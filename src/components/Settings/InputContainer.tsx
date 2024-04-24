@@ -6,7 +6,6 @@ import {
   useColorModeValue,
   Link,
   Icon,
-  Box,
 } from '@chakra-ui/react'
 import { FaCircleInfo } from 'react-icons/fa6'
 import type { InputInfo } from './InfoToast'
@@ -36,23 +35,10 @@ const InputContainer: React.FC<InputContainerProps> = ({
             _hover={{ color: hoverColor }}
             onClick={() => {
               toast({
-                // status: "info",
-                // title: info.title,
-                // description: (
-                //   <Box>
-                //     {
-                //       info.description.map(d => {
-                //         return <Text mb="3">{d}</Text>
-                //       })
-                //     }
-                //   </Box>
-                // ),
                 render: () => (
                   <InfoToast info={info} onClose={() => toast.closeAll()} />
                 ),
                 duration: null,
-                // isClosable: true,
-                // variant: "solid",
                 position: 'top',
               })
             }}

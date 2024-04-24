@@ -13,16 +13,8 @@ import {
 
 const Info: React.FC = () => {
   return (
-    <Container
-      maxW='100vw'
-      // bg="brandPurple.600"
-      p={0}
-    >
-      <Container
-        maxW='container.sm'
-        // color="white"
-        p={4}
-      >
+    <Container maxW='100vw' p={0}>
+      <Container maxW='container.sm' p={4}>
         <VStack spacing={10}>
           <Box as='section' id='flow-state'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
@@ -44,7 +36,6 @@ const Info: React.FC = () => {
             </Text>
             <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
             <Text fontSize='lg'>
-              {/* Flowtimer is an online productivity tool that is available on desktop and mobile. The purpose of this app is to help users to achieve the flow state while working on whatever tasks they need to complete. The app implements a twist on the popular Pomodoro technique, coined the <strong>"Flowmodoro technique"</strong> as some people find the Pomodoro technique too restricting.  */}
               Flowtimer is <strong>pomodoro reimagined</strong>. Instead of
               restricting yourself to working for set amounts of time, allow
               yourself to enter the <strong>"flow state"</strong> by working for

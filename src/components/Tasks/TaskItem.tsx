@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   Checkbox,
   Editable,

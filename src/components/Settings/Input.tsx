@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {
-  HStack,
-  Text,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberDecrementStepper,
   NumberIncrementStepper,
   useColorModeValue,
-  useToast,
-  Link,
-  IconButton,
-  Icon,
-  Box,
   Switch,
   Select,
   Slider,
@@ -21,7 +14,6 @@ import {
   SliderThumb,
   SliderMark,
 } from '@chakra-ui/react'
-import { FaCircleInfo } from 'react-icons/fa6'
 import type { InputInfo } from './InfoToast'
 import InputContainer from './InputContainer'
 
@@ -74,7 +66,6 @@ export type InputProps<T extends InputType> = T extends 'number'
           : never
 
 const Input: React.FC<InputProps<InputType>> = ({ label, info, ...props }) => {
-  const color = useColorModeValue('beige.600', 'brandGray.300')
   const brandColor = useColorModeValue('brandPurple.600', 'brandPurple.200')
   const [value, setValue] = useState('')
 
@@ -86,6 +77,7 @@ const Input: React.FC<InputProps<InputType>> = ({ label, info, ...props }) => {
         setValue('0')
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if ('numberControl' in props) {

@@ -3,7 +3,6 @@ import { Text, VStack } from '@chakra-ui/react'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import Context from '../../context'
 import TimeDisplay from '../TimeDisplay'
-import { useTimer } from '../../hooks/timer'
 import Controls from './Controls'
 import { FaMugHot } from 'react-icons/fa6'
 import Tasks from '../Tasks'
@@ -12,7 +11,7 @@ const WorkDisplay: React.FC = () => {
   const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
-  const [_, mins, secs] = seconds2hms(breakTime)
+  const hms = seconds2hms(breakTime)
 
   return (
     <VStack
@@ -34,7 +33,7 @@ const WorkDisplay: React.FC = () => {
           fontFamily='mono'
           fontSize='xl'
         >
-          {zeroPad(mins)}:{zeroPad(secs)}
+          {zeroPad(hms[1])}:{zeroPad(hms[2])}
         </Text>
       </Text>
       <Controls

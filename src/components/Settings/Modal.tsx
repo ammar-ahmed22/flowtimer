@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import {
   Modal as ChakraModal,
   ModalProps as ChakraModalProps,
@@ -8,8 +8,6 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  useColorModeValue,
-  Button,
 } from '@chakra-ui/react'
 import Section from './Section'
 import Input from './Input'

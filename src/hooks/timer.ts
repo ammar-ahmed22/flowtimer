@@ -37,7 +37,7 @@ export const useTimer = (params?: UseTimerParams): UseTimerResponse => {
     }
 
     return () => clearInterval(IID)
-  }, [started, play])
+  }, [started, play, params?.tickSound])
 
   return {
     elapsed,

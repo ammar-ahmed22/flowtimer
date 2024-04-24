@@ -4,8 +4,6 @@ import * as ReactDOM from 'react-dom/client'
 import Router from './Router'
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from './theme'
-// import { ContextProvider } from "./context"
-// import Info from "./components/Info"
 
 const container = document.getElementById('root')
 if (!container) throw new Error('Failed to find the root element')
@@ -16,7 +14,6 @@ root.render(
     <ChakraProvider theme={theme}>
       <ColorModeScript />
       <Router />
-      {/* <Info /> */}
     </ChakraProvider>
   </React.StrictMode>,
 )
