@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, HStack, Text, IconButton, Link } from '@chakra-ui/react'
+import { Container, HStack, Text, IconButton, } from '@chakra-ui/react'
 import { ContextProvider } from '../../context'
 import ModeDisplay from '../../components/ModeDisplay'
 import { ColorModeSwitcher } from '../../ColorModeSwitcher'
