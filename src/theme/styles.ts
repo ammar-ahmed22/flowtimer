@@ -8,8 +8,8 @@ const styles = {
       color: mode('black', 'white')(props),
     },
     html: {
-      scrollBehavior: "smooth !important"
-    }
+      scrollBehavior: 'smooth !important',
+    },
   }),
 }
 

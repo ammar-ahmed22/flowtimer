@@ -8,8 +8,8 @@ import { FaCircleInfo } from 'react-icons/fa6'
 import { useLocation } from 'react-router-dom'
 
 const App: React.FC = () => {
-  const location = useLocation();
-  
+  const location = useLocation()
+
   return (
     <ContextProvider>
       <Container maxW='container.sm' centerContent minH='100vh'>
@@ -26,20 +26,18 @@ const App: React.FC = () => {
             </Text>
           </HStack>
           <HStack flex='1' justify='end'>
-            {
-              location.pathname !== "/app" && (
-                <IconButton
-                  icon={<FaCircleInfo />}
-                  aria-label='Info'
-                  colorScheme='brandPurple'
-                  size='sm'
-                  fontSize='md'
-                  variant='ghost'
-                  as="a"
-                  href="/#info"
-                />
-              )
-            }
+            {location.pathname !== '/app' && (
+              <IconButton
+                icon={<FaCircleInfo />}
+                aria-label='Info'
+                colorScheme='brandPurple'
+                size='sm'
+                fontSize='md'
+                variant='ghost'
+                as='a'
+                href='/#info'
+              />
+            )}
             <Settings />
           </HStack>
         </HStack>

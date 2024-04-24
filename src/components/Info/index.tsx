@@ -14,7 +14,7 @@ import { Link as ReactLink } from 'react-router-dom'
 
 const Info: React.FC = () => {
   return (
-    <Container maxW='100vw' p={0} id="info">
+    <Container maxW='100vw' p={0} id='info'>
       <Container maxW='container.sm' p={4}>
         <VStack spacing={10}>
           <Box as='section'>
@@ -153,7 +153,9 @@ const Info: React.FC = () => {
         >
           <Link>Home</Link>
           <Link>Contact</Link>
-          <Link as={ReactLink} to="/app" >Simple App</Link>
+          <Link as={ReactLink} to='/app'>
+            Simple App
+          </Link>
         </HStack>
         <HStack w='100%' justify='center' py={3}>
           <Text>
