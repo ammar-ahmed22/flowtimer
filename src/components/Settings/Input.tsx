@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { 
+import React, { useEffect, useState } from 'react'
+import {
   HStack,
   Text,
   NumberInput,
@@ -19,62 +19,88 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  SliderMark
-} from "@chakra-ui/react"
-import { FaCircleInfo } from "react-icons/fa6";
-import type { InputInfo } from "./InfoToast";
-import InputContainer from "./InputContainer";
+  SliderMark,
+} from '@chakra-ui/react'
+import { FaCircleInfo } from 'react-icons/fa6'
+import type { InputInfo } from './InfoToast'
+import InputContainer from './InputContainer'
 
-type InputType = "number" | "text" | "toggle" | "select" | "slider"
+type InputType = 'number' | 'text' | 'toggle' | 'select' | 'slider'
 
 export type GenericInputProps = {
-  label: React.ReactNode,
-  info?: InputInfo 
+  label: React.ReactNode
+  info?: InputInfo
 }
 
-export type InputProps<T extends InputType> = 
-  T extends "number" ? GenericInputProps & { numberControl: { value: number, onChange: (val: number) => void, min?: number, max?: number, step?: number, defaultValue?: number }} :
-  T extends "text" ? GenericInputProps & { textControl: { value: string, onChange: (val: string) => void }} : 
-  T extends "toggle" ? GenericInputProps & { toggleControl: { value: boolean, onChange: (val: boolean) => void } } :
-  T extends "select" ? GenericInputProps & { selectControl: { options: string[], value: string, onChange: (val: string) => void, onBlur?: () => void } } :
-  T extends "slider" ? GenericInputProps & { sliderControl: { value: number, onChange: (val: number) => void, min?: number, max?: number, step?: number, markValue?: number }} :
-  never;
+export type InputProps<T extends InputType> = T extends 'number'
+  ? GenericInputProps & {
+      numberControl: {
+        value: number
+        onChange: (val: number) => void
+        min?: number
+        max?: number
+        step?: number
+        defaultValue?: number
+      }
+    }
+  : T extends 'text'
+    ? GenericInputProps & {
+        textControl: { value: string; onChange: (val: string) => void }
+      }
+    : T extends 'toggle'
+      ? GenericInputProps & {
+          toggleControl: { value: boolean; onChange: (val: boolean) => void }
+        }
+      : T extends 'select'
+        ? GenericInputProps & {
+            selectControl: {
+              options: string[]
+              value: string
+              onChange: (val: string) => void
+              onBlur?: () => void
+            }
+          }
+        : T extends 'slider'
+          ? GenericInputProps & {
+              sliderControl: {
+                value: number
+                onChange: (val: number) => void
+                min?: number
+                max?: number
+                step?: number
+                markValue?: number
+              }
+            }
+          : never
 
-
-
-
-const Input: React.FC<InputProps<InputType>> = ({
-  label,
-  info,
-  ...props
-}) => {
-  const color = useColorModeValue("beige.600", "brandGray.300")
-  const brandColor = useColorModeValue("brandPurple.600", "brandPurple.200");
-  const [value, setValue] = useState("");
+const Input: React.FC<InputProps<InputType>> = ({ label, info, ...props }) => {
+  const color = useColorModeValue('beige.600', 'brandGray.300')
+  const brandColor = useColorModeValue('brandPurple.600', 'brandPurple.200')
+  const [value, setValue] = useState('')
 
   useEffect(() => {
-    if ("numberControl" in props) {
+    if ('numberControl' in props) {
       if (props.numberControl.defaultValue) {
         setValue(props.numberControl.defaultValue.toString())
       } else {
-        setValue("0");
+        setValue('0')
       }
     }
   }, [])
-  
-  if ("numberControl" in props) {
-    const { numberControl } = props;
-    const { min, max, step, onChange } = numberControl;
+
+  if ('numberControl' in props) {
+    const { numberControl } = props
+    const { min, max, step, onChange } = numberControl
     return (
-      <InputContainer label={label} info={info} >
-        <NumberInput 
-          size="sm" 
-          maxW={20} 
-          variant="brandFilled" 
+      <InputContainer label={label} info={info}>
+        <NumberInput
+          size='sm'
+          maxW={20}
+          variant='brandFilled'
           value={value}
           onChange={(strVal, numVal) => {
-            setValue(strVal);
-            if (!isNaN(numVal)) onChange(numVal);
+            setValue(strVal)
+            if (!isNaN(numVal)) onChange(numVal)
           }}
           min={min}
           max={max}
@@ -90,74 +116,64 @@ const Input: React.FC<InputProps<InputType>> = ({
     )
   }
 
-  if ("toggleControl" in props) {
-    const { toggleControl } = props;
-    const { value, onChange } = toggleControl;
+  if ('toggleControl' in props) {
+    const { toggleControl } = props
+    const { value, onChange } = toggleControl
     return (
-      <InputContainer label={label} info={info} >
-        <Switch 
-          colorScheme="brandPurple"
+      <InputContainer label={label} info={info}>
+        <Switch
+          colorScheme='brandPurple'
           isChecked={value}
           onChange={(e) => {
-            onChange(e.target.checked);
+            onChange(e.target.checked)
           }}
         />
       </InputContainer>
     )
   }
 
-  if ("selectControl" in props) {
-    const { selectControl } = props;
-    const { options, value, onChange, onBlur } = selectControl;
+  if ('selectControl' in props) {
+    const { selectControl } = props
+    const { options, value, onChange, onBlur } = selectControl
     return (
-      <InputContainer
-        label={label}
-        info={info}
-      >
+      <InputContainer label={label} info={info}>
         <Select
-          w={"50%"} 
-          variant="brandFilled"
+          w={'50%'}
+          variant='brandFilled'
           value={value}
           onChange={(e) => {
             onChange(e.target.value)
           }}
           onBlur={onBlur}
         >
-          {
-            options.map(opt => {
-              return (
-                <option value={opt} >{opt}</option>
-              )
-            })
-          }
+          {options.map((opt) => {
+            return <option value={opt}>{opt}</option>
+          })}
         </Select>
       </InputContainer>
     )
   }
 
-  if ("sliderControl" in props) {
-    const { sliderControl } = props;
-    const { value, onChange, min, max, step, markValue } = sliderControl;
+  if ('sliderControl' in props) {
+    const { sliderControl } = props
+    const { value, onChange, min, max, step, markValue } = sliderControl
     return (
-      <InputContainer
-        label={label}
-        info={info}
-      >
-        <Slider 
-          colorScheme="brandPurple" 
-          value={value} 
+      <InputContainer label={label} info={info}>
+        <Slider
+          colorScheme='brandPurple'
+          value={value}
           onChange={onChange}
           min={min}
           max={max}
           step={step}
-          w="50%"
+          w='50%'
         >
-          <SliderMark 
+          <SliderMark
             value={0}
-            top="50%"
-            transform="translate(-100%, -50%)"
-            fontSize="sm"
-            fontWeight="bold"
+            top='50%'
+            transform='translate(-100%, -50%)'
+            fontSize='sm'
+            fontWeight='bold'
             pr={3}
             color={brandColor}
           >
@@ -172,9 +188,7 @@ const Input: React.FC<InputProps<InputType>> = ({
     )
   }
 
-  return (
-    <></>
-  )
+  return <></>
 }
 
-export default Input;
+export default Input

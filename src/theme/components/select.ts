@@ -1,16 +1,17 @@
-import { selectAnatomy } from "@chakra-ui/anatomy"
-import { createMultiStyleConfigHelpers } from "@chakra-ui/react"
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(selectAnatomy.keys);
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys)
 
 const brandFilled = definePartsStyle({
   field: {
-    bg: "beige.300",
-    color: "beige.800",
+    bg: 'beige.300',
+    color: 'beige.800',
     _dark: {
-      bg: "brandGray.500",
-      color: "brandGray.200"
-    }
+      bg: 'brandGray.500',
+      color: 'brandGray.200',
+    },
   },
   // stepper: {
   //   color: "beige.700",
@@ -21,7 +22,7 @@ const brandFilled = definePartsStyle({
 })
 
 const selectInput = defineMultiStyleConfig({
-  variants: { brandFilled }
+  variants: { brandFilled },
 })
 
-export default selectInput;
+export default selectInput

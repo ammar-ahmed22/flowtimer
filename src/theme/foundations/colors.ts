@@ -1,4 +1,3 @@
-
 const beige = {
   '50': '#f9f7f3',
   '100': '#f2eee3',
@@ -11,7 +10,7 @@ const beige = {
   '800': '#6f523d',
   '900': '#5a4334',
   '950': '#30231a',
-};
+}
 
 const brandGray = {
   '50': '#f6f6f6',
@@ -41,11 +40,10 @@ const brandPurple = {
   '950': '#2e2541',
 }
 
-
 const colors = {
   beige,
   brandGray,
-  brandPurple
+  brandPurple,
 }
 
-export default colors;
+export default colors

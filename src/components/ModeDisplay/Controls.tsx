@@ -1,19 +1,14 @@
-import React from "react";
-import { 
-  HStack,
-  Button,
-  IconButton,
-  ButtonProps
-} from "@chakra-ui/react";
-import { FaPause, FaPlay, FaRepeat } from "react-icons/fa6";
+import React from 'react'
+import { HStack, Button, IconButton, ButtonProps } from '@chakra-ui/react'
+import { FaPause, FaPlay, FaRepeat } from 'react-icons/fa6'
 
 export type ControlsProps = {
-  isStarted?: boolean,
-  onToggleStart?: () => void,
-  onReset?: () => void,
-  onSwitchMode?: () => void,
-  switchMode?: React.ReactNode,
-  switchIcon?: ButtonProps["leftIcon"],
+  isStarted?: boolean
+  onToggleStart?: () => void
+  onReset?: () => void
+  onSwitchMode?: () => void
+  switchMode?: React.ReactNode
+  switchIcon?: ButtonProps['leftIcon']
   switchDisabled?: boolean
 }
 
@@ -22,36 +17,37 @@ const Controls: React.FC<ControlsProps> = ({
   onToggleStart = () => {},
   onReset = () => {},
   onSwitchMode = () => {},
-  switchMode = "Switch",
+  switchMode = 'Switch',
   switchIcon,
-  switchDisabled = false
+  switchDisabled = false,
 }) => {
-
   return (
-    <HStack justify="center" >
-      <Button 
-        variant="brandFilled"
+    <HStack justify='center'>
+      <Button
+        variant='brandFilled'
         leftIcon={switchIcon}
         onClick={onSwitchMode}
         isDisabled={switchDisabled}
-      >{switchMode}</Button>
+      >
+        {switchMode}
+      </Button>
       <Button
         leftIcon={isStarted ? <FaPause /> : <FaPlay />}
-        variant="brandOutline"
+        variant='brandOutline'
         onClick={onToggleStart}
-        width="15ch"
+        width='15ch'
       >
-        {isStarted && "Pause"}
-        {!isStarted && "Start"}
+        {isStarted && 'Pause'}
+        {!isStarted && 'Start'}
       </Button>
-      <IconButton 
+      <IconButton
         icon={<FaRepeat />}
-        aria-label="Reset timer"
-        variant="ghost"
-        color="brandPurple.700"
+        aria-label='Reset timer'
+        variant='ghost'
+        color='brandPurple.700'
         _hover={{
-          bg: "transparent",
-          color: "brandPurple.900"
+          bg: 'transparent',
+          color: 'brandPurple.900',
         }}
         onClick={onReset}
       />
@@ -59,4 +55,4 @@ const Controls: React.FC<ControlsProps> = ({
   )
 }
 
-export default Controls;
+export default Controls

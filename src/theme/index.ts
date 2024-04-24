@@ -1,13 +1,13 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react'
 
-import styles from "./styles";
-import colors from "./foundations/colors";
-import fonts from "./foundations/fonts";
+import styles from './styles'
+import colors from './foundations/colors'
+import fonts from './foundations/fonts'
 
-import Button from "./components/button";
-import Modal from "./components/modal";
-import NumberInput from "./components/numberInput";
-import Select from "./components/select";
+import Button from './components/button'
+import Modal from './components/modal'
+import NumberInput from './components/numberInput'
+import Select from './components/select'
 
 const overrides = {
   colors,
@@ -17,8 +17,8 @@ const overrides = {
     Button,
     Modal,
     NumberInput,
-    Select
-  }
-};
+    Select,
+  },
+}
 
-export default extendTheme(overrides);
+export default extendTheme(overrides)
