@@ -10,13 +10,14 @@ import {
   HStack,
   Link,
 } from '@chakra-ui/react'
+import { Link as ReactLink } from 'react-router-dom'
 
 const Info: React.FC = () => {
   return (
-    <Container maxW='100vw' p={0}>
+    <Container maxW='100vw' p={0} id="info">
       <Container maxW='container.sm' p={4}>
         <VStack spacing={10}>
-          <Box as='section' id='flow-state'>
+          <Box as='section'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               "Flow state"
             </Text>
@@ -30,7 +31,7 @@ const Info: React.FC = () => {
               enjoyment in the process of the activity
             </Text>
           </Box>
-          <Box id='flowtimer' as='section'>
+          <Box as='section'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is Flowtimer?
             </Text>
@@ -44,7 +45,7 @@ const Info: React.FC = () => {
               this technique, the <strong>"Flowmodoro technique"</strong>.
             </Text>
           </Box>
-          <Box as='section' id='flowmodoro'>
+          <Box as='section'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is the Flowmodoro technique?
             </Text>
@@ -64,7 +65,7 @@ const Info: React.FC = () => {
               calculated as 12 minutes.
             </Text>
           </Box>
-          <Box id='pomodoro' as='section'>
+          <Box as='section'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is the Pomodoro technique?
             </Text>
@@ -82,7 +83,7 @@ const Info: React.FC = () => {
               ending.
             </Text>
           </Box>
-          <Box w='100%' id='flowtimer' as='section'>
+          <Box w='100%' as='section'>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               How to use Flowtimer?
             </Text>
@@ -103,7 +104,7 @@ const Info: React.FC = () => {
               </ListItem>
             </OrderedList>
           </Box>
-          <Box w='100%' id='features' as='section' mb={12}>
+          <Box w='100%' as='section' mb={12}>
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               Features
             </Text>
@@ -151,10 +152,8 @@ const Info: React.FC = () => {
           fontWeight='bold'
         >
           <Link>Home</Link>
-          <Link>Privacy</Link>
-          <Link>Terms</Link>
           <Link>Contact</Link>
-          <Link>Simple App</Link>
+          <Link as={ReactLink} to="/app" >Simple App</Link>
         </HStack>
         <HStack w='100%' justify='center' py={3}>
           <Text>

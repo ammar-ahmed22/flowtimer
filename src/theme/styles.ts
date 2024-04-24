@@ -7,6 +7,9 @@ const styles = {
       bg: mode('beige.100', 'brandGray.900')(props),
       color: mode('black', 'white')(props),
     },
+    html: {
+      scrollBehavior: "smooth !important"
+    }
   }),
 }
 
