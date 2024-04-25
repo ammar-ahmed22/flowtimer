@@ -139,8 +139,22 @@ const Info: React.FC = () => {
             </UnorderedList>
             <Text fontSize='lg'>
               Have a feature you want us to add or report something not working?{' '}
-              <Link color='brandPurple.600'>Open a GitHub issue</Link> or{' '}
-              <Link color='brandPurple.600'>contact me</Link>.
+              <Link
+                color='brandPurple.600'
+                href='https://github.com/ammar-ahmed22/flowtimer/issues'
+                isExternal
+              >
+                Open a GitHub issue
+              </Link>{' '}
+              or{' '}
+              <Link
+                color='brandPurple.600'
+                href='mailto:ammar.ahmed2203@gmail.com'
+                isExternal
+              >
+                contact me
+              </Link>
+              .
             </Text>
           </Box>
         </VStack>
@@ -153,27 +167,30 @@ const Info: React.FC = () => {
           justify='center'
           fontWeight='bold'
         >
-          <Link>Home</Link>
-          <Link>Contact</Link>
           <Link as={ReactLink} to='/app'>
             Simple App
           </Link>
         </HStack>
         <HStack w='100%' justify='center' py={3}>
           <Text>
-            Made with ❤️ by <Link fontWeight='bold' href="https://ammarahmed.ca" >Ammar Ahmed</Link>
+            Made with ❤️ by{' '}
+            <Link fontWeight='bold' href='https://ammarahmed.ca'>
+              Ammar Ahmed
+            </Link>
           </Text>
         </HStack>
-        <HStack w="100%" justify="center" pb={3}>
+        <HStack w='100%' justify='center' pb={3}>
           <Button
             as={Link}
-            variant="outline"
-            colorScheme="black"
-            size="sm"
+            variant='outline'
+            colorScheme='black'
+            size='sm'
             leftIcon={<FaMugHot />}
-            href="https://buymeacoffee.com/ammar.ahmed"
+            href='https://buymeacoffee.com/ammar.ahmed'
             isExternal
-          >Buy me a coffee</Button>
+          >
+            Buy me a coffee
+          </Button>
         </HStack>
         <HStack w='100%' justify='center'>
           <Text fontSize='sm' fontWeight='light'>
