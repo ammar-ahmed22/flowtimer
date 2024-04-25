@@ -6,19 +6,29 @@ import Controls from './Controls'
 import Context from '../../context'
 import Tasks from '../Tasks'
 import { FaLightbulb } from 'react-icons/fa6'
+import useSound from 'use-sound'
+import alarmSpriteMap from '../../assets/sounds/alarms'
+const alarmSprite = require("../../assets/sounds/alarms-sprite.mp3")
+
+
 
 const BreakDisplay: React.FC = () => {
-  const { timeWorked, breakRatio, toggleMode, setTimeWorked, timer } =
+  const { timeWorked, breakRatio, toggleMode, setTimeWorked, timer, volume, alarmSound } =
     useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
+  const [play] = useSound(alarmSprite, {
+    sprite: alarmSpriteMap,
+    volume
+  })
 
   const breakTime = Math.floor(timeWorked * breakRatio)
 
   useEffect(() => {
     if (breakTime - elapsed === 0 && isStarted) {
       toggleStart()
+      if (alarmSound) play({ id: alarmSound });
     }
-  }, [elapsed, breakTime, isStarted, toggleStart])
+  }, [elapsed, breakTime, isStarted, toggleStart, alarmSound, play])
 
   return (
     <VStack
