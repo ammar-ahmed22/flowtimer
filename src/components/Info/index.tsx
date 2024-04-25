@@ -9,8 +9,10 @@ import {
   ListItem,
   HStack,
   Link,
+  Button,
 } from '@chakra-ui/react'
 import { Link as ReactLink } from 'react-router-dom'
+import { FaMugHot } from 'react-icons/fa6'
 
 const Info: React.FC = () => {
   return (
@@ -159,8 +161,19 @@ const Info: React.FC = () => {
         </HStack>
         <HStack w='100%' justify='center' py={3}>
           <Text>
-            Made with ❤️ by <Link fontWeight='bold'>Ammar Ahmed</Link>
+            Made with ❤️ by <Link fontWeight='bold' href="https://ammarahmed.ca" >Ammar Ahmed</Link>
           </Text>
+        </HStack>
+        <HStack w="100%" justify="center" pb={3}>
+          <Button
+            as={Link}
+            variant="outline"
+            colorScheme="black"
+            size="sm"
+            leftIcon={<FaMugHot />}
+            href="https://buymeacoffee.com/ammar.ahmed"
+            isExternal
+          >Buy me a coffee</Button>
         </HStack>
         <HStack w='100%' justify='center'>
           <Text fontSize='sm' fontWeight='light'>
