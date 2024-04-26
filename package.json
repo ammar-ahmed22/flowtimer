@@ -14,6 +14,7 @@
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
     "framer-motion": "^6.2.9",
+    "howler": "^2.2.4",
     "prettier": "^3.2.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -21,7 +22,6 @@
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.3",
-    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.11"
   }
 }

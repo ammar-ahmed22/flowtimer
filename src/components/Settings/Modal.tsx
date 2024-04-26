@@ -15,8 +15,8 @@ import { FaRegClock, FaVolumeLow } from 'react-icons/fa6'
 import Context from '../../context'
 import { ALARM_NAMES, AlarmName } from '../../assets/sounds/alarms'
 import alarmSpriteMap from '../../assets/sounds/alarms'
-import useSound from 'use-sound'
-const alarmSprite = require('../../assets/sounds/alarms-sprite.mp3')
+import { useSound } from '../../hooks/sound'
+const alarmSprite: string = require('../../assets/sounds/alarms-sprite.mp3')
 
 type ModalProps = Omit<ChakraModalProps, 'children'> & {}
 
@@ -34,9 +34,8 @@ const Modal: React.FC<ModalProps> = ({ ...props }) => {
     setVolume,
   } = useContext(Context)
 
-  const [playAlarm, { stop }] = useSound(alarmSprite, {
+  const [play, stop] = useSound(alarmSprite, {
     sprite: alarmSpriteMap,
-    interrupt: true,
     volume,
   })
 
@@ -101,7 +100,7 @@ const Modal: React.FC<ModalProps> = ({ ...props }) => {
             <Input
               label='Alarm'
               selectControl={{
-                options: [...ALARM_NAMES, 'None'],
+                options: ['None', ...ALARM_NAMES],
                 value: alarmSound ?? 'None',
                 onChange: (val: string) => {
                   if (val === 'None') {
@@ -109,7 +108,7 @@ const Modal: React.FC<ModalProps> = ({ ...props }) => {
                   } else {
                     setAlarmSound(val as AlarmName)
                     stop()
-                    playAlarm({ id: val })
+                    play(val)
                   }
                 },
                 onBlur: () => {

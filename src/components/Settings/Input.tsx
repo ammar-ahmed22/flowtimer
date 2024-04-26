@@ -139,7 +139,11 @@ const Input: React.FC<InputProps<InputType>> = ({ label, info, ...props }) => {
           onBlur={onBlur}
         >
           {options.map((opt) => {
-            return <option value={opt}>{opt}</option>
+            return (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            )
           })}
         </Select>
       </InputContainer>
@@ -154,7 +158,10 @@ const Input: React.FC<InputProps<InputType>> = ({ label, info, ...props }) => {
         <Slider
           colorScheme='brandPurple'
           value={value}
-          onChange={onChange}
+          onChange={(val: number) => onChange(val)}
+          // onChangeEnd={(val: number) => {
+          //   onChange(val);
+          // }}
           min={min}
           max={max}
           step={step}
