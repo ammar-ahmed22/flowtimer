@@ -37,7 +37,7 @@ const Tasks: React.FC = () => {
             textOverflow='ellipsis'
           >
             {tasks.length > 0 && <TaskItem task={tasks[0]} flex='1' />}
-            {tasks.length === 0 && <AddTask pb={0} flex={1} />}
+            {tasks.length === 0 && <AddTask pb={0} flex={1} as="div" />}
           </AccordionButton>
           <AccordionPanel flexDirection={'column'} display='flex' px={6} py={0}>
             {tasks.slice(1).map((task) => {

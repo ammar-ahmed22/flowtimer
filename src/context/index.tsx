@@ -84,10 +84,6 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
 
   const timer = useTimer({ tickSound })
 
-  React.useEffect(() => {
-    console.log({ breakRatio, minBreakTime })
-  }, [breakRatio, minBreakTime])
-
   const context: ContextType = {
     mode,
     setMode,
