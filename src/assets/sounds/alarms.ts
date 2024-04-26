@@ -1,4 +1,3 @@
-import type { SpriteMap } from 'use-sound/dist/types'
 
 export const ALARM_NAMES = [
   'Bell',
