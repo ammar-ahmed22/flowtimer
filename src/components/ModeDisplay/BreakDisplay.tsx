@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { VStack, Text } from '@chakra-ui/react'
+import { VStack, Text, useColorModeValue } from '@chakra-ui/react'
 import TimeDisplay from '../TimeDisplay'
 import ProgressCircle from '../ProgressCircle'
 import Controls from './Controls'
@@ -27,6 +27,7 @@ const BreakDisplay: React.FC = () => {
   })
 
   const breakTime = Math.floor(timeWorked * breakRatio)
+  const brandColor = useColorModeValue("brandPurple.700", "brandPurple.200");
 
   useEffect(() => {
     if (breakTime - elapsed === 0 && isStarted) {
@@ -38,7 +39,7 @@ const BreakDisplay: React.FC = () => {
   return (
     <VStack
       textAlign='center'
-      mt='15vh'
+      my='15vh'
       align='center'
       justify='center'
       spacing={10}
@@ -51,6 +52,7 @@ const BreakDisplay: React.FC = () => {
         lines={60}
         progress={(breakTime - elapsed) / breakTime}
         mb='16'
+        completeColor={brandColor}
       >
         <VStack w='100%' h='100%' justify='center' align='center' spacing={10}>
           <Text>You have</Text>

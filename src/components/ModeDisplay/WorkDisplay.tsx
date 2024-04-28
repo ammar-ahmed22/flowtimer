@@ -1,5 +1,5 @@
 import React, { useMemo, useContext } from 'react'
-import { Text, VStack } from '@chakra-ui/react'
+import { Text, VStack, useColorModeValue } from '@chakra-ui/react'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import Context from '../../context'
 import TimeDisplay from '../TimeDisplay'
@@ -11,7 +11,8 @@ const WorkDisplay: React.FC = () => {
   const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
-  const hms = seconds2hms(breakTime)
+  const hms = seconds2hms(breakTime);
+  const brandColor = useColorModeValue("brandPurple.700", "brandPurple.200");
 
   return (
     <VStack
@@ -28,7 +29,7 @@ const WorkDisplay: React.FC = () => {
         Your current break time is:{' '}
         <Text
           as='span'
-          color='brandPurple.700'
+          color={brandColor}
           fontWeight='bold'
           fontFamily='mono'
           fontSize='xl'

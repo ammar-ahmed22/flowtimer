@@ -11,7 +11,20 @@ const Button: ComponentStyleConfig = {
       color: 'white',
       _hover: {
         bg: 'brandPurple.900',
+        _disabled: {
+          bg: 'brandPurple.900'
+        }
       },
+      _dark: {
+        bg: "brandPurple.200",
+        color: "black",
+        _hover: {
+          bg: "brandPurple.100",
+          _disabled: {
+            bg: "brandPurple.100"
+          }
+        }
+      }
     },
     brandOutline: {
       borderRadius: 'full',
@@ -27,6 +40,14 @@ const Button: ComponentStyleConfig = {
         bg: 'brandPurple.300',
         color: 'brandPurple.900',
       },
+      _dark: {
+        borderColor: "brandPurple.200",
+        color: "brandPurple.200",
+        _hover: {
+          bg: "brandPurple.900",
+          color: "brandPurple.50"
+        }
+      }
     },
   },
 }
