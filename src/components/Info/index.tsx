@@ -10,11 +10,13 @@ import {
   HStack,
   Link,
   Button,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { Link as ReactLink } from 'react-router-dom'
 import { FaMugHot } from 'react-icons/fa6'
 
 const Info: React.FC = () => {
+  const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
   return (
     <Container maxW='100vw' p={0} id='info'>
       <Container maxW='container.sm' p={4}>
@@ -26,7 +28,7 @@ const Info: React.FC = () => {
             <Text fontStyle='italic' fontSize='xl'>
               (noun)
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <Text fontSize='lg'>
               A mental state in which a person performing some activity is fully
               immersed in a feeling of energized focus, full involvement, and
@@ -37,7 +39,7 @@ const Info: React.FC = () => {
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is Flowtimer?
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <Text fontSize='lg'>
               Flowtimer is <strong>pomodoro reimagined</strong>. Instead of
               restricting yourself to working for set amounts of time, allow
@@ -51,7 +53,7 @@ const Info: React.FC = () => {
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is the Flowmodoro technique?
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <Text fontSize='lg' mb='3'>
               The Flowmodoro technique is a twist on the Pomodoro technique in
               which users time themselves working for however long they want and
@@ -71,7 +73,7 @@ const Info: React.FC = () => {
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               What is the Pomodoro technique?
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <Text fontSize='lg' mb='3'>
               The Pomodoro technique is created by Francesco Cirillo in which
               users break down their work into intervals, typically 25 minutes
@@ -89,7 +91,7 @@ const Info: React.FC = () => {
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               How to use Flowtimer?
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <OrderedList marginInlineStart='8' spacing={2} fontSize='lg'>
               <ListItem>
                 <strong>Add tasks</strong> to work on.
@@ -110,7 +112,7 @@ const Info: React.FC = () => {
             <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
               Features
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <UnorderedList
               marginInlineStart='8'
               spacing={2}
@@ -126,7 +128,7 @@ const Info: React.FC = () => {
             <Text fontSize='3xl' fontFamily='heading' fontWeight='bold'>
               Features Coming Soon
             </Text>
-            <Box width='2rem' height='4px' bg='brandPurple.600' my='2' />
+            <Box width='2rem' height='4px' bg={brandColor} my='2' />
             <UnorderedList
               marginInlineStart='8'
               spacing={2}
@@ -140,7 +142,7 @@ const Info: React.FC = () => {
             <Text fontSize='lg'>
               Have a feature you want us to add or report something not working?{' '}
               <Link
-                color='brandPurple.600'
+                color={brandColor}
                 href='https://github.com/ammar-ahmed22/flowtimer/issues'
                 isExternal
               >
@@ -148,7 +150,7 @@ const Info: React.FC = () => {
               </Link>{' '}
               or{' '}
               <Link
-                color='brandPurple.600'
+                color={brandColor}
                 href='mailto:ammar.ahmed2203@gmail.com'
                 isExternal
               >

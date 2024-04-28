@@ -68,7 +68,7 @@ const App: React.FC = () => {
           <ColorModeSwitcher flex='1' />
           <HStack flex='1' margin='0 auto' spacing={1} justify='center'>
             <Text
-              fontSize='3xl'
+              fontSize={{ base: 'lg', md: '3xl' }}
               fontFamily='heading'
               textAlign='center'
               fontWeight='bold'

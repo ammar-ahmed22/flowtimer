@@ -27,7 +27,7 @@ const BreakDisplay: React.FC = () => {
   })
 
   const breakTime = Math.floor(timeWorked * breakRatio)
-  const brandColor = useColorModeValue("brandPurple.700", "brandPurple.200");
+  const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
 
   useEffect(() => {
     if (breakTime - elapsed === 0 && isStarted) {

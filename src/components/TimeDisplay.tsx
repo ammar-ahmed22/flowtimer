@@ -1,5 +1,12 @@
 import React from 'react'
-import { Text, HStack, TextProps, VStack, StackProps, useColorModeValue } from '@chakra-ui/react'
+import {
+  Text,
+  HStack,
+  TextProps,
+  VStack,
+  StackProps,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { seconds2hms, zeroPad } from '../utils/time'
 
 export type TimeDisplayProps = StackProps & {
@@ -7,8 +14,8 @@ export type TimeDisplayProps = StackProps & {
 }
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({ elapsed, ...rest }) => {
-  const [hours, minutes, seconds] = seconds2hms(elapsed);
-  const color = useColorModeValue("brandPurple.700", "brandPurple.200");
+  const [hours, minutes, seconds] = seconds2hms(elapsed)
+  const color = useColorModeValue('brandPurple.700', 'brandPurple.200')
   const numberStyles: TextProps = {
     fontSize: '7xl',
     fontWeight: 'bold',

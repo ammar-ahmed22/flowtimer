@@ -1,5 +1,11 @@
 import React from 'react'
-import { HStack, Button, IconButton, ButtonProps, useColorModeValue } from '@chakra-ui/react'
+import {
+  HStack,
+  Button,
+  IconButton,
+  ButtonProps,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { FaPause, FaPlay, FaRepeat } from 'react-icons/fa6'
 
 export type ControlsProps = {
@@ -21,8 +27,11 @@ const Controls: React.FC<ControlsProps> = ({
   switchIcon,
   switchDisabled = false,
 }) => {
-  const buttonColor = useColorModeValue("brandPurple.700", "brandPurple.200");
-  const buttonHoverColor = useColorModeValue("brandPurple.900", "brandPurple.50");
+  const buttonColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
+  const buttonHoverColor = useColorModeValue(
+    'brandPurple.900',
+    'brandPurple.50',
+  )
   return (
     <HStack justify='center'>
       <Button

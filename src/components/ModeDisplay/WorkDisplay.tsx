@@ -11,8 +11,8 @@ const WorkDisplay: React.FC = () => {
   const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
-  const hms = seconds2hms(breakTime);
-  const brandColor = useColorModeValue("brandPurple.700", "brandPurple.200");
+  const hms = seconds2hms(breakTime)
+  const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
 
   return (
     <VStack

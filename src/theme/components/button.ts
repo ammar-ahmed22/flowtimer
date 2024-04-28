@@ -12,19 +12,19 @@ const Button: ComponentStyleConfig = {
       _hover: {
         bg: 'brandPurple.900',
         _disabled: {
-          bg: 'brandPurple.900'
-        }
+          bg: 'brandPurple.900',
+        },
       },
       _dark: {
-        bg: "brandPurple.200",
-        color: "black",
+        bg: 'brandPurple.200',
+        color: 'black',
         _hover: {
-          bg: "brandPurple.100",
+          bg: 'brandPurple.100',
           _disabled: {
-            bg: "brandPurple.100"
-          }
-        }
-      }
+            bg: 'brandPurple.100',
+          },
+        },
+      },
     },
     brandOutline: {
       borderRadius: 'full',
@@ -41,13 +41,13 @@ const Button: ComponentStyleConfig = {
         color: 'brandPurple.900',
       },
       _dark: {
-        borderColor: "brandPurple.200",
-        color: "brandPurple.200",
+        borderColor: 'brandPurple.200',
+        color: 'brandPurple.200',
         _hover: {
-          bg: "brandPurple.900",
-          color: "brandPurple.50"
-        }
-      }
+          bg: 'brandPurple.900',
+          color: 'brandPurple.50',
+        },
+      },
     },
   },
 }
