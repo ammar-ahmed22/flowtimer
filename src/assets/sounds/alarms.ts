@@ -1,4 +1,3 @@
-
 export const ALARM_NAMES = [
   'Bell',
   'Bird',

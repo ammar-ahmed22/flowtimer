@@ -1,7 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { useTimer } from '../hooks/timer'
 import type { UseTimerResponse } from '../hooks/timer'
 import type { AlarmName } from '../assets/sounds/alarms'
+import { useJSONLocalStorage } from '../hooks/storage'
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
 
@@ -77,10 +78,16 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [timeWorked, setTimeWorked] = useState(0)
   const [breakRatio, setBreakRatio] = useState(1 / 5)
   const [minBreakTime, setMinBreakTime] = useState(1)
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [getLocalTasks, setLocalTasks] =
+    useJSONLocalStorage<Task[]>('flowtimer-tasks')
+  const [tasks, setTasks] = useState<Task[]>(getLocalTasks() ?? [])
   const [tickSound, setTickSound] = useState(false)
   const [alarmSound, setAlarmSound] = useState<AlarmName | undefined>(undefined)
   const [volume, setVolume] = useState(0.5)
+
+  useEffect(() => {
+    setLocalTasks(tasks)
+  }, [tasks, setLocalTasks])
 
   const timer = useTimer({ tickSound })
 
