@@ -25,7 +25,10 @@ const WorkDisplay: React.FC = () => {
       spacing={10}
     >
       <Helmet>
-        <title>Work - {h > 0 ? zeroPad(h) + ":" : ""}{zeroPad(m)}:{zeroPad(s)}</title>
+        <title>
+          Work - {h > 0 ? zeroPad(h) + ':' : ''}
+          {zeroPad(m)}:{zeroPad(s)}
+        </title>
       </Helmet>
       <Tasks />
       <Text>You have been working for</Text>

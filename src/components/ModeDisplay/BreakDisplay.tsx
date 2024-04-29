@@ -9,7 +9,7 @@ import { FaLightbulb } from 'react-icons/fa6'
 import { useSound } from '../../hooks/sound'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import alarmSpriteMap from '../../assets/sounds/alarms'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 const alarmSprite = require('../../assets/sounds/alarms-sprite.mp3')
 
 const BreakDisplay: React.FC = () => {
@@ -38,7 +38,7 @@ const BreakDisplay: React.FC = () => {
     }
   }, [elapsed, breakTime, isStarted, toggleStart, alarmSound, play])
 
-  const [h, m, s] = seconds2hms(breakTime - elapsed);
+  const [h, m, s] = seconds2hms(breakTime - elapsed)
 
   return (
     <VStack
@@ -50,7 +50,10 @@ const BreakDisplay: React.FC = () => {
       maxH='100vh'
     >
       <Helmet>
-        <title>Break - {h > 0 ? zeroPad(h) + ":" : ""}{zeroPad(m)}:{zeroPad(s)}</title>
+        <title>
+          Break - {h > 0 ? zeroPad(h) + ':' : ''}
+          {zeroPad(m)}:{zeroPad(s)}
+        </title>
       </Helmet>
       <Tasks />
 

@@ -7,12 +7,15 @@ import '../index.css'
 
 const Router: React.FC = () => {
   const router = createBrowserRouter(routes)
-  const [beige100, brandGray900] = useToken("colors", ["beige.100", "brandGray.900"]);
-  const themeColor = useColorModeValue(beige100, brandGray900);
+  const [beige100, brandGray900] = useToken('colors', [
+    'beige.100',
+    'brandGray.900',
+  ])
+  const themeColor = useColorModeValue(beige100, brandGray900)
   return (
     <>
       <Helmet>
-        <meta name="theme-color" content={themeColor} ></meta>
+        <meta name='theme-color' content={themeColor}></meta>
       </Helmet>
       <RouterProvider router={router} />
     </>
