@@ -6,12 +6,14 @@ import TimeDisplay from '../TimeDisplay'
 import Controls from './Controls'
 import { FaMugHot } from 'react-icons/fa6'
 import Tasks from '../Tasks'
+import { Helmet } from 'react-helmet'
 
 const WorkDisplay: React.FC = () => {
   const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
   const hms = seconds2hms(breakTime)
+  const [h, m, s] = seconds2hms(elapsed)
   const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
 
   return (
@@ -22,6 +24,9 @@ const WorkDisplay: React.FC = () => {
       align='center'
       spacing={10}
     >
+      <Helmet>
+        <title>Work - {h > 0 ? zeroPad(h) + ":" : ""}{zeroPad(m)}:{zeroPad(s)}</title>
+      </Helmet>
       <Tasks />
       <Text>You have been working for</Text>
       <TimeDisplay elapsed={elapsed} />
