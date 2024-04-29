@@ -10,12 +10,6 @@ const styles = {
     html: {
       scrollBehavior: 'smooth !important',
     },
-    // _fullscreen: {
-    //   bg: "rgba(255, 255, 255, 0)"
-    // },
-    // _backdrop: {
-    //   bg: "rgba(255, 255, 255, 0)"
-    // }
   }),
 }
 
