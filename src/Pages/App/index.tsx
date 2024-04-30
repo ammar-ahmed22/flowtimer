@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Container, HStack, Text, IconButton } from '@chakra-ui/react'
+import {
+  Container,
+  HStack,
+  Text,
+  IconButton,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { ContextProvider } from '../../context'
 import ModeDisplay from '../../components/ModeDisplay'
 import { ColorModeSwitcher } from '../../ColorModeSwitcher'
@@ -14,6 +20,10 @@ import { useLocation } from 'react-router-dom'
 const App: React.FC = () => {
   const location = useLocation()
   const [isPopup, setIsPopup] = useState(false)
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: false,
+  })
 
   useEffect(() => {
     if (window.opener) {
@@ -33,7 +43,7 @@ const App: React.FC = () => {
   return (
     <ContextProvider>
       <Container maxW='container.sm' centerContent minH='100vh' pos='relative'>
-        {!isPopup && (
+        {!isPopup && !isMobile && (
           <IconButton
             icon={<FaArrowUpRightFromSquare />}
             aria-label='New Window'
@@ -49,21 +59,23 @@ const App: React.FC = () => {
             }}
           />
         )}
-        <IconButton
-          icon={<FaExpand />}
-          aria-label='Fullscreen'
-          colorScheme='brandPurple'
-          size='sm'
-          fontSize='md'
-          variant='ghost'
-          pos='absolute'
-          bottom={4}
-          left={0}
-          onClick={() => {
-            const root = document.getElementById('root')
-            if (root) requestFullScreen(document.body)
-          }}
-        />
+        {!isMobile && (
+          <IconButton
+            icon={<FaExpand />}
+            aria-label='Fullscreen'
+            colorScheme='brandPurple'
+            size='sm'
+            fontSize='md'
+            variant='ghost'
+            pos='absolute'
+            bottom={4}
+            left={0}
+            onClick={() => {
+              const root = document.getElementById('root')
+              if (root) requestFullScreen(document.body)
+            }}
+          />
+        )}
         <HStack justify='space-between' w='100%' mt='3'>
           <ColorModeSwitcher flex='1' />
           <HStack flex='1' margin='0 auto' spacing={1} justify='center'>
