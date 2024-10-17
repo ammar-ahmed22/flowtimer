@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import Context from '../context'
 import { useSound } from './sound'
 const tick = require('../assets/sounds/tick.mp3')
@@ -20,19 +20,41 @@ export const useTimer = (params?: UseTimerParams): UseTimerResponse => {
   const [started, setStarted] = useState(false)
   const [play, stop] = useSound(tick, { volume, sprite: { tick: [0, 1000] } })
 
-  useEffect(() => {
-    let IID: NodeJS.Timeout | undefined
-    if (started) {
-      IID = setInterval(() => {
-        setElapsed((prev) => prev + 1)
-        if (params?.tickSound) play('tick')
-      }, 1000)
-    } else {
-      stop()
-      clearInterval(IID)
+  const startTimeRef = useRef<number | null>(null);
+  const animFrameIdRef = useRef<number | null>(null);
+
+  const updateElapsed = (timestamp: number) => {
+    if (!startTimeRef.current) startTimeRef.current = timestamp;
+    const delta = Math.floor((timestamp - startTimeRef.current) / 1000);
+    if (delta > 0) {
+      setElapsed((prev) => prev + delta);
+      startTimeRef.current = timestamp;
+
+      if (params?.tickSound) {
+        play("tick");
+      }
     }
 
-    return () => clearInterval(IID)
+    animFrameIdRef.current = requestAnimationFrame(updateElapsed);
+  }
+
+  useEffect(() => {
+    if (started) {
+      startTimeRef.current = performance.now();
+      animFrameIdRef.current = requestAnimationFrame(updateElapsed);
+    } else {
+      stop();
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
+      }
+    }
+
+    return () => {
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
+      }
+    }    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [started, play, params?.tickSound, stop])
 
   return {
@@ -44,6 +66,7 @@ export const useTimer = (params?: UseTimerParams): UseTimerResponse => {
     reset: () => {
       setStarted(false)
       setElapsed(0)
+      startTimeRef.current = null;
     },
   }
 }
