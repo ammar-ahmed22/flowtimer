@@ -9,7 +9,6 @@ import { FaLightbulb } from 'react-icons/fa6'
 import { useSound } from '../../hooks/sound'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import alarmSpriteMap from '../../assets/sounds/alarms'
-import { Helmet } from 'react-helmet'
 const alarmSprite = require('../../assets/sounds/alarms-sprite.mp3')
 
 const BreakDisplay: React.FC = () => {
@@ -49,12 +48,6 @@ const BreakDisplay: React.FC = () => {
       spacing={10}
       maxH='100vh'
     >
-      <Helmet>
-        <title>
-          Break - {h > 0 ? zeroPad(h) + ':' : ''}
-          {zeroPad(m)}:{zeroPad(s)}
-        </title>
-      </Helmet>
       <Tasks />
 
       <ProgressCircle
@@ -74,11 +67,11 @@ const BreakDisplay: React.FC = () => {
       <Controls
         isStarted={isStarted}
         onToggleStart={toggleStart}
-        onReset={reset}
+        onReset={() => reset(() => document.title = `Break - ${h > 0 ? zeroPad(h) + ":" : ""}${zeroPad(m)}:${zeroPad(s)}`)}
         onSwitchMode={() => {
           if (isStarted) toggleStart()
           setTimeWorked(0)
-          reset()
+          reset(() => document.title = "Flowtimer")
           toggleMode()
         }}
         switchMode='Finish'

@@ -1,72 +1,70 @@
-import { useState, useEffect, useContext, useRef } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Context from '../context'
 import { useSound } from './sound'
+import timerWorker from '../workers/timer';
 const tick = require('../assets/sounds/tick.mp3')
+
 
 export type UseTimerResponse = {
   elapsed: number
   isStarted: boolean
   toggleStart: () => void
-  reset: () => void
+  reset: (cb?: () => void) => void
 }
 
 export type UseTimerParams = {
-  tickSound?: boolean
+  tickSound?: boolean,
+  tickCallback?: (elapsed: number) => void
 }
 
-export const useTimer = (params?: UseTimerParams): UseTimerResponse => {
+export const useWorkerTimer = (params?: UseTimerParams): UseTimerResponse => {
   const { volume } = useContext(Context)
   const [elapsed, setElapsed] = useState(0)
   const [started, setStarted] = useState(false)
+  const [reset, setReset] = useState(false);
+
   const [play, stop] = useSound(tick, { volume, sprite: { tick: [0, 1000] } })
 
-  const startTimeRef = useRef<number | null>(null);
-  const animFrameIdRef = useRef<number | null>(null);
-
-  const updateElapsed = (timestamp: number) => {
-    if (!startTimeRef.current) startTimeRef.current = timestamp;
-    const delta = Math.floor((timestamp - startTimeRef.current) / 1000);
-    if (delta > 0) {
-      setElapsed((prev) => prev + delta);
-      startTimeRef.current = timestamp;
-
-      if (params?.tickSound) {
-        play("tick");
-      }
-    }
-
-    animFrameIdRef.current = requestAnimationFrame(updateElapsed);
-  }
-
   useEffect(() => {
-    if (started) {
-      startTimeRef.current = performance.now();
-      animFrameIdRef.current = requestAnimationFrame(updateElapsed);
-    } else {
-      stop();
-      if (animFrameIdRef.current) {
-        cancelAnimationFrame(animFrameIdRef.current);
+    let worker: Worker;
+    if (window.Worker) {
+      worker = new Worker(timerWorker);
+      worker.onmessage = (event: MessageEvent<number>) => {
+        if (params?.tickSound) {
+          play("tick");
+        }
+        if (params?.tickCallback) params.tickCallback(event.data);
+        setElapsed(event.data);
+      }
+      if (started) {
+        worker.postMessage({ control: "start", elapsed });
+      } else {
+        stop();
+        worker.postMessage({ control: "stop", elapsed });
+      }
+
+      if (reset) {
+        worker.postMessage({ control: "reset", elapsed });
+        setReset(false);
       }
     }
 
     return () => {
-      if (animFrameIdRef.current) {
-        cancelAnimationFrame(animFrameIdRef.current);
-      }
-    }    
+      worker.terminate();
+    }
+    
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, play, params?.tickSound, stop])
+  }, [started, reset])
 
   return {
     elapsed,
     isStarted: started,
-    toggleStart: () => {
-      setStarted((prev) => !prev)
-    },
-    reset: () => {
-      setStarted(false)
-      setElapsed(0)
-      startTimeRef.current = null;
-    },
+    toggleStart: () => setStarted(prev => !prev),
+    reset: (callback?: () => void) => {
+      setStarted(false);
+      setReset(true);
+      setElapsed(0);
+      if (callback) callback();
+    } 
   }
 }

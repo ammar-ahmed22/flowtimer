@@ -1,8 +1,9 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { useTimer } from '../hooks/timer'
+import { useWorkerTimer } from '../hooks/timer'
 import type { UseTimerResponse } from '../hooks/timer'
 import type { AlarmName } from '../assets/sounds/alarms'
 import { useJSONLocalStorage } from '../hooks/storage'
+import { seconds2hms, zeroPad } from '../utils/time'
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
 
@@ -89,7 +90,12 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     setLocalTasks(tasks)
   }, [tasks, setLocalTasks])
 
-  const timer = useTimer({ tickSound })
+  const timer = useWorkerTimer({ tickSound, tickCallback: (elapsed) => {
+    const breakTime = Math.floor(timeWorked * breakRatio)
+    const [h, m, s] = seconds2hms(mode === "work" ? elapsed : breakTime - elapsed);
+    let title = `${mode[0].toUpperCase() + mode.slice(1)} - ${h > 0 ? zeroPad(h) + ":" : ""}${zeroPad(m)}:${zeroPad(s)}`;
+    document.title = title;
+  }})
 
   const context: ContextType = {
     mode,
