@@ -90,12 +90,17 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     setLocalTasks(tasks)
   }, [tasks, setLocalTasks])
 
-  const timer = useWorkerTimer({ tickSound, tickCallback: (elapsed) => {
-    const breakTime = Math.floor(timeWorked * breakRatio)
-    const [h, m, s] = seconds2hms(mode === "work" ? elapsed : breakTime - elapsed);
-    let title = `${mode[0].toUpperCase() + mode.slice(1)} - ${h > 0 ? zeroPad(h) + ":" : ""}${zeroPad(m)}:${zeroPad(s)}`;
-    document.title = title;
-  }})
+  const timer = useWorkerTimer({
+    tickSound,
+    tickCallback: (elapsed) => {
+      const breakTime = Math.floor(timeWorked * breakRatio)
+      const [h, m, s] = seconds2hms(
+        mode === 'work' ? elapsed : breakTime - elapsed,
+      )
+      let title = `${mode[0].toUpperCase() + mode.slice(1)} - ${h > 0 ? zeroPad(h) + ':' : ''}${zeroPad(m)}:${zeroPad(s)}`
+      document.title = title
+    },
+  })
 
   const context: ContextType = {
     mode,

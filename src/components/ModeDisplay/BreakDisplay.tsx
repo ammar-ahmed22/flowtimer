@@ -67,11 +67,16 @@ const BreakDisplay: React.FC = () => {
       <Controls
         isStarted={isStarted}
         onToggleStart={toggleStart}
-        onReset={() => reset(() => document.title = `Break - ${h > 0 ? zeroPad(h) + ":" : ""}${zeroPad(m)}:${zeroPad(s)}`)}
+        onReset={() =>
+          reset(
+            () =>
+              (document.title = `Break - ${h > 0 ? zeroPad(h) + ':' : ''}${zeroPad(m)}:${zeroPad(s)}`),
+          )
+        }
         onSwitchMode={() => {
           if (isStarted) toggleStart()
           setTimeWorked(0)
-          reset(() => document.title = "Flowtimer")
+          reset(() => (document.title = 'Flowtimer'))
           toggleMode()
         }}
         switchMode='Finish'

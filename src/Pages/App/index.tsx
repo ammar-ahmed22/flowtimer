@@ -20,10 +20,10 @@ import { useLocation } from 'react-router-dom'
 const App: React.FC = () => {
   const location = useLocation()
   const [isPopup, setIsPopup] = useState(false)
-  const isMobile = useBreakpointValue({
-    base: true,
-    md: false,
-  })
+  // const isMobile = useBreakpointValue({
+  //   base: true,
+  //   md: false,
+  // })
 
   useEffect(() => {
     if (window.opener) {
@@ -42,7 +42,8 @@ const App: React.FC = () => {
 
   return (
     <ContextProvider>
-      <Container maxW='container.sm' centerContent minH='100vh' pos='relative'>
+      <></>
+      {/* <Container maxW='container.sm' centerContent minH='100vh' pos='relative'>
         {!isPopup && !isMobile && (
           <IconButton
             icon={<FaArrowUpRightFromSquare />}
@@ -105,7 +106,7 @@ const App: React.FC = () => {
           </HStack>
         </HStack>
         <ModeDisplay />
-      </Container>
+      </Container> */}
     </ContextProvider>
   )
 }
