@@ -1,21 +1,19 @@
 import React from 'react'
+import { Button } from '@nextui-org/react'
 import {
-  HStack,
-  Button,
-  IconButton,
-  ButtonProps,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import { FaPause, FaPlay, FaRepeat } from 'react-icons/fa6'
+  PlayIcon,
+  PauseIcon,
+  ArrowPathRoundedSquareIcon,
+} from '@heroicons/react/24/solid'
 
 export type ControlsProps = {
   isStarted?: boolean
   onToggleStart?: () => void
   onReset?: () => void
   onSwitchMode?: () => void
-  switchMode?: React.ReactNode
-  switchIcon?: ButtonProps['leftIcon']
+  switchIcon?: React.ReactNode
   switchDisabled?: boolean
+  className?: string
 }
 
 const Controls: React.FC<ControlsProps> = ({
@@ -23,46 +21,71 @@ const Controls: React.FC<ControlsProps> = ({
   onToggleStart = () => {},
   onReset = () => {},
   onSwitchMode = () => {},
-  switchMode = 'Switch',
   switchIcon,
   switchDisabled = false,
+  className,
 }) => {
-  const buttonColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
-  const buttonHoverColor = useColorModeValue(
-    'brandPurple.900',
-    'brandPurple.50',
-  )
   return (
-    <HStack justify='center'>
+    <div className={`flex justify-center space-x-2 ${className}`}>
       <Button
-        variant='brandFilled'
-        leftIcon={switchIcon}
-        onClick={onSwitchMode}
+        color='primary'
         isDisabled={switchDisabled}
+        startContent={switchIcon}
+        isIconOnly
+        variant='ghost'
+        onPress={() => onSwitchMode()}
       >
-        {switchMode}
+        {/* {switchMode} */}
       </Button>
       <Button
-        leftIcon={isStarted ? <FaPause /> : <FaPlay />}
-        variant='brandOutline'
-        onClick={onToggleStart}
-        width='15ch'
-      >
-        {isStarted && 'Pause'}
-        {!isStarted && 'Start'}
-      </Button>
-      <IconButton
-        icon={<FaRepeat />}
-        aria-label='Reset timer'
         variant='ghost'
-        color={buttonColor}
-        _hover={{
-          bg: 'transparent',
-          color: buttonHoverColor,
-        }}
-        onClick={onReset}
+        isIconOnly
+        startContent={
+          isStarted ? (
+            <PauseIcon className='size-5' />
+          ) : (
+            <PlayIcon className='size-5' />
+          )
+        }
+        onPress={() => onToggleStart()}
+      ></Button>
+      <Button
+        variant='ghost'
+        isIconOnly
+        startContent={<ArrowPathRoundedSquareIcon className='size-5' />}
+        onPress={() => onReset()}
       />
-    </HStack>
+    </div>
+    // <HStack justify='center'>
+    //   <Button
+    //     variant='brandFilled'
+    //     leftIcon={switchIcon}
+    //     onClick={onSwitchMode}
+    //     isDisabled={switchDisabled}
+    //   >
+    //     {switchMode}
+    //   </Button>
+    //   <Button
+    //     leftIcon={isStarted ? <FaPause /> : <FaPlay />}
+    //     variant='brandOutline'
+    //     onClick={onToggleStart}
+    //     width='15ch'
+    //   >
+    //     {isStarted && 'Pause'}
+    //     {!isStarted && 'Start'}
+    //   </Button>
+    //   <IconButton
+    //     icon={<FaRepeat />}
+    //     aria-label='Reset timer'
+    //     variant='ghost'
+    //     color={buttonColor}
+    //     _hover={{
+    //       bg: 'transparent',
+    //       color: buttonHoverColor,
+    //     }}
+    //     onClick={onReset}
+    //   />
+    // </HStack>
   )
 }
 

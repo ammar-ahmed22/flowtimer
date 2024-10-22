@@ -1,57 +1,40 @@
 import React, { useMemo, useContext } from 'react'
-import { Text, VStack, useColorModeValue } from '@chakra-ui/react'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import Context from '../../context'
 import TimeDisplay from '../TimeDisplay'
 import Controls from './Controls'
-import { FaMugHot } from 'react-icons/fa6'
-import Tasks from '../Tasks'
+import { BellSnoozeIcon } from '@heroicons/react/24/solid'
 
 const WorkDisplay: React.FC = () => {
   const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
   const hms = seconds2hms(breakTime)
-  const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
 
   return (
-    <VStack
-      mt='15vh'
-      textAlign='center'
-      justify='center'
-      align='center'
-      spacing={10}
-    >
-      <Tasks />
-      <Text>You have been working for</Text>
+    <div className='h-full flex flex-col text-center justify-center align-center space-y-5'>
+      <p className='text-foreground'>You have been working for</p>
       <TimeDisplay elapsed={elapsed} />
-      <Text mb='16'>
+      <p className='text-foreground'>
         Your current break time is:{' '}
-        <Text
-          as='span'
-          color={brandColor}
-          fontWeight='bold'
-          fontFamily='mono'
-          fontSize='xl'
-        >
+        <span className='text-primary font-mono'>
           {zeroPad(hms[1])}:{zeroPad(hms[2])}
-        </Text>
-      </Text>
+        </span>
+      </p>
       <Controls
         isStarted={isStarted}
         onToggleStart={toggleStart}
-        onReset={() => reset(() => (document.title = 'Work - 00:00'))}
         onSwitchMode={() => {
           if (isStarted) toggleStart()
           setTimeWorked(elapsed)
           reset(() => (document.title = 'Flowtimer'))
           toggleMode()
         }}
-        switchMode='Break'
-        switchIcon={<FaMugHot />}
+        switchIcon={<BellSnoozeIcon className='size-5' />}
         switchDisabled={breakTime < minBreakTime * 60}
+        onReset={() => reset(() => (document.title = 'Work - 00:00'))}
       />
-    </VStack>
+    </div>
   )
 }
 

@@ -1,237 +1,83 @@
 import React from 'react'
-import {
-  Container,
-  Text,
-  Box,
-  VStack,
-  OrderedList,
-  UnorderedList,
-  ListItem,
-  HStack,
-  Link,
-  Button,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import { Link as ReactLink } from 'react-router-dom'
-import { FaMugHot } from 'react-icons/fa6'
+import { textGradient } from '../../utils/classes'
 
 const Info: React.FC = () => {
+  const grad = textGradient(
+    'primary-600',
+    'primary-800',
+    'b',
+    'primary-300',
+    'primary-600',
+  )
   return (
-    <div id='info' className='max-w-3xl mx-auto text-lg text-default-500'>
-      <section className='mb-4'>
-        <h2 className='font-display text-3xl text-foreground font-bold'>
-          "Flow state"
-        </h2>
-        <p className='font-body text-xl italic text-foreground'>(noun)</p>
-        <div className='w-8 h-1 bg-primary mb-2'></div>
-        <p>
-          A mental state in which a person performing some activity is fully
-          immersed in a feeling of energized focus, full involvement, and
-          enjoyment in the process of the activity.
+    <div
+      id='info'
+      className='max-w-3xl mx-auto md:text-md text-sm text-default-500 min-h-screen'
+    >
+      <section className='pb-8'>
+        <h1 className='md:text-3xl text-xl text-foreground font-extrabold tracking-tight text-center'>
+          <span className={grad}>Flowtimer:</span> Pomodoro, Reinvented.
+        </h1>
+        <p className='text-center'>
+          Maximize productivity by working in your{' '}
+          <strong className='text-foreground'>flow state</strong>. Flowtimer
+          lets you work without time limits, calculating breaks as a ratio of
+          time worked, rewarding longer focus sessions. We call it the{' '}
+          <strong className='text-foreground'>Flowmodoro technique</strong>.
         </p>
       </section>
-      <section className='mb-2'>
-        <h2 className='font-display text-3xl text-foreground font-bold'>
-          What is Flowtimer?
+      <section className='pb-4 grid md:grid-cols-2 grid-cols-1 gap-4'>
+        <div>
+          <h2 className='md:text-2xl text-lg text-foreground font-extrabold tracking-tight'>
+            <span className={grad}>What.</span>
+          </h2>
+          <p>
+            Flowmodoro{' '}
+            <strong className='text-foreground'>
+              adapts the Pomodoro technique
+            </strong>{' '}
+            by allowing you to work as long as you're in the zone. Breaks are
+            calculated as a{' '}
+            <strong className='text-foreground'>
+              fraction of your work time
+            </strong>{' '}
+            (default ratio: 1/5). For example, work for 1 hour and take a
+            12-minute break.
+          </p>
+        </div>
+      </section>
+      <section className='pb-4 grid md:grid-cols-2 grid-cols-1 gap-4'>
+        <div></div>
+        <div>
+          <h2 className='md:text-2xl text-lg text-foreground font-extrabold tracking-tight'>
+            <span className={grad}>Why.</span>
+          </h2>
+          <p>
+            While{' '}
+            <strong className='text-foreground'>
+              Pomodoro sets strict intervals
+            </strong>{' '}
+            (usually 25 minutes of work), Flowmodoro removes that limitation, so
+            your{' '}
+            <strong className='text-foreground'>
+              flow state is uninterrupted.
+            </strong>{' '}
+            Enjoy extended focus sessions and break rewards proportional to your
+            effort.
+          </p>
+        </div>
+      </section>
+      <section className='pb-4'>
+        <h2
+          className={
+            'md:text-2xl text-lg font-extrabold tracking-tight ' + grad
+          }
+        >
+          How.
         </h2>
-        <div className='w-8 h-1 bg-primary mb-2'></div>
-        <p>
-          Flowtimer is <strong>Pomodoro re-imagined</strong>. Instead of
-          restricting yourself to working for set amounts of time, allow
-          yourself to enter the <strong>"flow state"</strong> by working for as
-          long as you want. Breaks are calculated as a ratio of time worked,
-          rewarding you for working longer. I have aptly coined this technique,
-          the <strong>Flowmodoro technique.</strong>
-        </p>
       </section>
     </div>
   )
-  // const brandColor = useColorModeValue('brandPurple.700', 'brandPurple.200')
-  // return (
-  //   <Container maxW='100vw' p={0} id='info'>
-  //     <Container maxW='container.sm' p={4}>
-  //       <VStack spacing={10}>
-  //         <Box as='section'>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             "Flow state"
-  //           </Text>
-  //           <Text fontStyle='italic' fontSize='xl'>
-  //             (noun)
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <Text fontSize='lg'>
-  //             A mental state in which a person performing some activity is fully
-  //             immersed in a feeling of energized focus, full involvement, and
-  //             enjoyment in the process of the activity
-  //           </Text>
-  //         </Box>
-  //         <Box as='section'>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             What is Flowtimer?
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <Text fontSize='lg'>
-  //             Flowtimer is <strong>pomodoro reimagined</strong>. Instead of
-  //             restricting yourself to working for set amounts of time, allow
-  //             yourself to enter the <strong>"flow state"</strong> by working for
-  //             as long as you want. Breaks are calculated as a ratio of time
-  //             worked, rewarding yourself for working longer. I have aptly coined
-  //             this technique, the <strong>"Flowmodoro technique"</strong>.
-  //           </Text>
-  //         </Box>
-  //         <Box as='section'>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             What is the Flowmodoro technique?
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <Text fontSize='lg' mb='3'>
-  //             The Flowmodoro technique is a twist on the Pomodoro technique in
-  //             which users time themselves working for however long they want and
-  //             the break time is calculated as a ratio of time worked. This
-  //             allows for users to keep working in their "flow state" for however
-  //             long they want. This also allows for users to be rewarded for
-  //             working longer as longer work time results in a longer break. The
-  //             break ratio is initially set as 1/5.
-  //           </Text>
-  //           <Text fontSize='lg'>
-  //             For example, if the break ratio is set to 1/5 and a user times
-  //             themselves working for 1 hour. Their break time would be
-  //             calculated as 12 minutes.
-  //           </Text>
-  //         </Box>
-  //         <Box as='section'>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             What is the Pomodoro technique?
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <Text fontSize='lg' mb='3'>
-  //             The Pomodoro technique is created by Francesco Cirillo in which
-  //             users break down their work into intervals, typically 25 minutes
-  //             long. Followed by a short break of 5 minutes.
-  //           </Text>
-  //           <Text fontSize='lg'>
-  //             While this is a great technique that has been useful for many
-  //             people, some people find it too restricting due to the set amount
-  //             of work time. Sometimes people can become immersed into a task,
-  //             achieving the "flow state", only to be cut off by their work time
-  //             ending.
-  //           </Text>
-  //         </Box>
-  //         <Box w='100%' as='section'>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             How to use Flowtimer?
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <OrderedList marginInlineStart='8' spacing={2} fontSize='lg'>
-  //             <ListItem>
-  //               <strong>Add tasks</strong> to work on.
-  //             </ListItem>
-  //             <ListItem>
-  //               <strong>Time yourself</strong> working until you feel like
-  //               taking a break.
-  //             </ListItem>
-  //             <ListItem>
-  //               Take your <strong>calculated break.</strong>
-  //             </ListItem>
-  //             <ListItem>
-  //               <strong>Repeat</strong> until you've finished all your tasks
-  //             </ListItem>
-  //           </OrderedList>
-  //         </Box>
-  //         <Box w='100%' as='section' mb={12}>
-  //           <Text fontFamily='heading' fontWeight='bold' fontSize='3xl'>
-  //             Features
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <UnorderedList
-  //             marginInlineStart='8'
-  //             spacing={2}
-  //             fontSize='lg'
-  //             mb={5}
-  //           >
-  //             <ListItem>To-do list to track tasks.</ListItem>
-  //             <ListItem>Mobile and desktop support</ListItem>
-  //             <ListItem>Dark/light mode</ListItem>
-  //             <ListItem>Customizable timer settings</ListItem>
-  //             <ListItem>Audio notifications at the end of break timer</ListItem>
-  //           </UnorderedList>
-  //           <Text fontSize='3xl' fontFamily='heading' fontWeight='bold'>
-  //             Features Coming Soon
-  //           </Text>
-  //           <Box width='2rem' height='4px' bg={brandColor} my='2' />
-  //           <UnorderedList
-  //             marginInlineStart='8'
-  //             spacing={2}
-  //             fontSize='lg'
-  //             mb={5}
-  //           >
-  //             <ListItem>Session stats.</ListItem>
-  //             <ListItem>Save tasks/stats in the browser.</ListItem>
-  //             <ListItem>Login to save tasks/stats across devices</ListItem>
-  //           </UnorderedList>
-  //           <Text fontSize='lg'>
-  //             Have a feature you want us to add or report something not working?{' '}
-  //             <Link
-  //               color={brandColor}
-  //               href='https://github.com/ammar-ahmed22/flowtimer/issues'
-  //               isExternal
-  //             >
-  //               Open a GitHub issue
-  //             </Link>{' '}
-  //             or{' '}
-  //             <Link
-  //               color={brandColor}
-  //               href='mailto:ammar.ahmed2203@gmail.com'
-  //               isExternal
-  //             >
-  //               contact me
-  //             </Link>
-  //             .
-  //           </Text>
-  //         </Box>
-  //       </VStack>
-  //     </Container>
-  //     <Box w='100%' h='1px' bg='beige.200' />
-  //     <Container maxW='container.sm' p={5}>
-  //       <HStack
-  //         textTransform='uppercase'
-  //         w='100%'
-  //         justify='center'
-  //         fontWeight='bold'
-  //       >
-  //         <Link as={ReactLink} to='/app'>
-  //           Simple App
-  //         </Link>
-  //       </HStack>
-  //       <HStack w='100%' justify='center' py={3}>
-  //         <Text>
-  //           Made with ❤️ by{' '}
-  //           <Link fontWeight='bold' href='https://ammarahmed.ca'>
-  //             Ammar Ahmed
-  //           </Link>
-  //         </Text>
-  //       </HStack>
-  //       <HStack w='100%' justify='center' pb={3}>
-  //         <Button
-  //           as={Link}
-  //           variant='outline'
-  //           colorScheme='black'
-  //           size='sm'
-  //           leftIcon={<FaMugHot />}
-  //           href='https://buymeacoffee.com/ammar.ahmed'
-  //           isExternal
-  //         >
-  //           Buy me a coffee
-  //         </Button>
-  //       </HStack>
-  //       <HStack w='100%' justify='center'>
-  //         <Text fontSize='sm' fontWeight='light'>
-  //           &copy; Flowtimer 2024. All Rights Reserved
-  //         </Text>
-  //       </HStack>
-  //     </Container>
-  //   </Container>
-  // )
 }
 
 export default Info

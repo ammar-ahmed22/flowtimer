@@ -78,7 +78,7 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [mode, setMode] = useState<Mode>('work')
   const [timeWorked, setTimeWorked] = useState(0)
   const [breakRatio, setBreakRatio] = useState(1 / 5)
-  const [minBreakTime, setMinBreakTime] = useState(1)
+  const [minBreakTime, setMinBreakTime] = useState(0.166667)
   const [getLocalTasks, setLocalTasks] =
     useJSONLocalStorage<Task[]>('flowtimer-tasks')
   const [tasks, setTasks] = useState<Task[]>(getLocalTasks() ?? [])
