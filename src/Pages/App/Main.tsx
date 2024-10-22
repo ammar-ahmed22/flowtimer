@@ -9,9 +9,7 @@ import ModeDisplay from '../../components/ModeDisplay'
 import Tasks from '../../components/Tasks'
 import axios from 'axios'
 
-
 const Main: React.FC = () => {
-  
   return (
     <div className='flex w-full h-[80vh] flex-col justify-center align-center'>
       <Tabs variant='underlined' color='primary' className='justify-center'>
@@ -55,9 +53,7 @@ const Main: React.FC = () => {
           }
         >
           <Card className='h-[70vh]'>
-            <CardBody>
-              YouTube search and play videos
-            </CardBody>
+            <CardBody>YouTube search and play videos</CardBody>
           </Card>
         </Tab>
       </Tabs>
