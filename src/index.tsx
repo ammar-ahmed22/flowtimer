@@ -8,11 +8,11 @@ if (!container) throw new Error('Failed to find the root element')
 const root = ReactDOM.createRoot(container)
 
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     {/* <ChakraProvider theme={theme}> */}
     {/* <ColorModeScript /> */}
     <Router />
     <Analytics />
     {/* </ChakraProvider> */}
-  </React.StrictMode>,
+  </React.Fragment>,
 )

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useToken, useColorModeValue } from '@chakra-ui/react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import routes from './routes'
 import { Helmet } from 'react-helmet'

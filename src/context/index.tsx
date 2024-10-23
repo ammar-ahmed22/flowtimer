@@ -15,6 +15,12 @@ export type Task = {
   complete: boolean
 }
 
+export type YouTubeVideo = {
+  title: string
+  thumbnail: string
+  videoId: string
+}
+
 export type ContextType = {
   mode: Mode
   toggleMode: () => void
@@ -37,6 +43,8 @@ export type ContextType = {
   setAlarmSound: SetState<AlarmName | undefined>
   volume: number
   setVolume: SetState<number>
+  video?: YouTubeVideo
+  setVideo: SetState<YouTubeVideo | undefined>
 }
 
 const Context = createContext<ContextType>({
@@ -66,6 +74,8 @@ const Context = createContext<ContextType>({
   setAlarmSound: () => {},
   volume: 0.5,
   setVolume: () => {},
+  video: undefined,
+  setVideo: () => {},
 })
 
 type ContextProviderProps = {
@@ -85,6 +95,7 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [tickSound, setTickSound] = useState(false)
   const [alarmSound, setAlarmSound] = useState<AlarmName | undefined>(undefined)
   const [volume, setVolume] = useState(0.5)
+  const [video, setVideo] = useState<YouTubeVideo | undefined>(undefined)
 
   useEffect(() => {
     setLocalTasks(tasks)
@@ -160,6 +171,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     setAlarmSound,
     volume,
     setVolume,
+    video,
+    setVideo,
   }
 
   return <Context.Provider value={context}>{children}</Context.Provider>

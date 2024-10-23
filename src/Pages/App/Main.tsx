@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
-import { Tabs, Tab, Card, CardBody, Button } from '@nextui-org/react'
+import React from 'react'
+import { Tabs, Tab, Card, CardBody } from '@nextui-org/react'
 import {
   ClockIcon,
   ClipboardDocumentCheckIcon,
-  MusicalNoteIcon,
 } from '@heroicons/react/24/solid'
 import ModeDisplay from '../../components/ModeDisplay'
 import Tasks from '../../components/Tasks'
-import axios from 'axios'
 
 const Main: React.FC = () => {
   return (
@@ -43,7 +41,7 @@ const Main: React.FC = () => {
             </CardBody>
           </Card>
         </Tab>
-        <Tab
+        {/* <Tab
           key='ambience'
           title={
             <div className='flex items-center space-x-1'>
@@ -53,9 +51,11 @@ const Main: React.FC = () => {
           }
         >
           <Card className='h-[70vh]'>
-            <CardBody>YouTube search and play videos</CardBody>
+            <CardBody>
+             <Ambience />
+            </CardBody>
           </Card>
-        </Tab>
+        </Tab> */}
       </Tabs>
     </div>
   )
