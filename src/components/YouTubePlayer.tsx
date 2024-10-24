@@ -22,6 +22,7 @@ const YouTubePlayer: React.FC = () => {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     playerRef.current = event.target
     setLoading(false)
+    setIsStarted(true)
     setDuration(event.target.getDuration())
   }
 
@@ -74,7 +75,7 @@ const YouTubePlayer: React.FC = () => {
             shadow='sm'
             radius='none'
           >
-            <CardBody className='py-0 px-3'>
+            <CardBody className='pt-2 pb-0 px-3 overflow-y-visible'>
               <div className='flex justify-between'>
                 <div className='flex gap-2 items-center'>
                   <Image

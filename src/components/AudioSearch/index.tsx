@@ -24,7 +24,7 @@ const AudioSearch: React.FC = () => {
         <MusicalNoteIcon className='size-5' />
       </Button>
       <Modal
-        size='3xl'
+        size='xl'
         isOpen={isOpen}
         onClose={onClose}
         scrollBehavior='inside'

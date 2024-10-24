@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import { Button } from '@nextui-org/react'
 import {
   InformationCircleIcon,
-  Cog6ToothIcon,
   MoonIcon,
   SunIcon,
 } from '@heroicons/react/24/solid'
 import { useThemeValue } from '../hooks/theme'
 import { ThemeContext } from '../context/theme'
 import AudioSearch from './AudioSearch'
+import Settings from './Settings'
 
 const Header: React.FC = () => {
   const { setTheme } = useContext(ThemeContext)
@@ -40,15 +40,7 @@ const Header: React.FC = () => {
         >
           <ThemeIcon className='size-5' />
         </Button>
-        <Button
-          size='sm'
-          color='primary'
-          variant='bordered'
-          isIconOnly
-          className='border-none'
-        >
-          <Cog6ToothIcon className='size-5' />
-        </Button>
+        <Settings />
         <AudioSearch />
       </div>
     </div>

@@ -9,10 +9,7 @@ const root = ReactDOM.createRoot(container)
 
 root.render(
   <React.Fragment>
-    {/* <ChakraProvider theme={theme}> */}
-    {/* <ColorModeScript /> */}
     <Router />
     <Analytics />
-    {/* </ChakraProvider> */}
   </React.Fragment>,
 )

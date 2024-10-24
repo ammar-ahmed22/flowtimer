@@ -41,21 +41,6 @@ const Main: React.FC = () => {
             </CardBody>
           </Card>
         </Tab>
-        {/* <Tab
-          key='ambience'
-          title={
-            <div className='flex items-center space-x-1'>
-              <MusicalNoteIcon className='size-4' />
-              <span>Ambience</span>
-            </div>
-          }
-        >
-          <Card className='h-[70vh]'>
-            <CardBody>
-             <Ambience />
-            </CardBody>
-          </Card>
-        </Tab> */}
       </Tabs>
     </div>
   )
