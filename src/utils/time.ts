@@ -7,3 +7,12 @@ export const seconds2hms = (seconds: number): [number, number, number] => {
 
 export const zeroPad = (value: number): string =>
   `${value <= 9 ? '0' : ''}${value}`
+
+export const hms = (seconds: number, removeHour?: boolean) => {
+  const vals = seconds2hms(seconds)
+  if (!removeHour) return vals.map((val) => zeroPad(val)).join(':')
+  return vals
+    .slice(1)
+    .map((val) => zeroPad(val))
+    .join(':')
+}

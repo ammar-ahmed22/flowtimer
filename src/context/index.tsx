@@ -15,6 +15,12 @@ export type Task = {
   complete: boolean
 }
 
+export type YouTubeVideo = {
+  title: string
+  thumbnail: string
+  videoId: string
+}
+
 export type ContextType = {
   mode: Mode
   toggleMode: () => void
@@ -37,6 +43,8 @@ export type ContextType = {
   setAlarmSound: SetState<AlarmName | undefined>
   volume: number
   setVolume: SetState<number>
+  video?: YouTubeVideo
+  setVideo: SetState<YouTubeVideo | undefined>
 }
 
 const Context = createContext<ContextType>({
@@ -66,6 +74,8 @@ const Context = createContext<ContextType>({
   setAlarmSound: () => {},
   volume: 0.5,
   setVolume: () => {},
+  video: undefined,
+  setVideo: () => {},
 })
 
 type ContextProviderProps = {
@@ -78,24 +88,30 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [mode, setMode] = useState<Mode>('work')
   const [timeWorked, setTimeWorked] = useState(0)
   const [breakRatio, setBreakRatio] = useState(1 / 5)
-  const [minBreakTime, setMinBreakTime] = useState(1)
+  const [minBreakTime, setMinBreakTime] = useState(0.166667)
   const [getLocalTasks, setLocalTasks] =
     useJSONLocalStorage<Task[]>('flowtimer-tasks')
   const [tasks, setTasks] = useState<Task[]>(getLocalTasks() ?? [])
   const [tickSound, setTickSound] = useState(false)
   const [alarmSound, setAlarmSound] = useState<AlarmName | undefined>(undefined)
   const [volume, setVolume] = useState(0.5)
+  const [video, setVideo] = useState<YouTubeVideo | undefined>(undefined)
 
   useEffect(() => {
     setLocalTasks(tasks)
   }, [tasks, setLocalTasks])
 
-  const timer = useWorkerTimer({ tickSound, tickCallback: (elapsed) => {
-    const breakTime = Math.floor(timeWorked * breakRatio)
-    const [h, m, s] = seconds2hms(mode === "work" ? elapsed : breakTime - elapsed);
-    let title = `${mode[0].toUpperCase() + mode.slice(1)} - ${h > 0 ? zeroPad(h) + ":" : ""}${zeroPad(m)}:${zeroPad(s)}`;
-    document.title = title;
-  }})
+  const timer = useWorkerTimer({
+    tickSound,
+    tickCallback: (elapsed) => {
+      const breakTime = Math.floor(timeWorked * breakRatio)
+      const [h, m, s] = seconds2hms(
+        mode === 'work' ? elapsed : breakTime - elapsed,
+      )
+      let title = `${mode[0].toUpperCase() + mode.slice(1)} - ${h > 0 ? zeroPad(h) + ':' : ''}${zeroPad(m)}:${zeroPad(s)}`
+      document.title = title
+    },
+  })
 
   const context: ContextType = {
     mode,
@@ -155,6 +171,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     setAlarmSound,
     volume,
     setVolume,
+    video,
+    setVideo,
   }
 
   return <Context.Provider value={context}>{children}</Context.Provider>

@@ -1,9 +1,8 @@
 <div align="center">
-  <img src="./public/favicon/android-chrome-192x192.png" height="100" width="100" />
-  <h3>FlowTimer</h2>
+  <img src="./images/landing.png" width="1000" />
   <p>Pomodoro Reimagined</p>
-  <p>Instead of restricting yourself to set work intervals, allow yourself to enter the flow state by timing yourself working for as long as you want. Breaks are calculated as a ratio of time worked, being rewarded for working longer!</p>
-  <p>Check it out at <a href="https://flow-timer.com">flow-timer.com</a></p>
+  <p>Work without time limits, with breaks calculated as a ratio of your focused sessions.</p>
+  <p><a href="https://flow-timer.com">Website</a> · <a href="https://ammarahmed.ca">Creator</a></p>
 </div>
 
 ## ✨ Features
@@ -12,14 +11,12 @@
 - Dark/light mode
 - Customizable timer settings
 - Audio notifications at the end of break timer
-- Session stats (coming soon...)
-- Browser persisted tasks/stats (coming soon...)
-- Login to save tasks/stats (coming soon...)
+- Search and play audio from YouTube videos
 
 ## 👨🏾‍💻 Tech Stack
 - **TypeScript**: Language
 - **React**: Web framework
-- **Chakra UI**: UI framework
+- **Next UI**: UI framework
 - **Vercel**: Deployment
 
 ## 🤝 Contributing

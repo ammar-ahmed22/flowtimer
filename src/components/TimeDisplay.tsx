@@ -1,52 +1,34 @@
 import React from 'react'
-import {
-  Text,
-  HStack,
-  TextProps,
-  VStack,
-  StackProps,
-  useColorModeValue,
-} from '@chakra-ui/react'
 import { seconds2hms, zeroPad } from '../utils/time'
 
-export type TimeDisplayProps = StackProps & {
+export type TimeDisplayProps = {
   elapsed: number
 }
 
-const TimeDisplay: React.FC<TimeDisplayProps> = ({ elapsed, ...rest }) => {
+const TimeDisplay: React.FC<TimeDisplayProps> = ({ elapsed }) => {
   const [hours, minutes, seconds] = seconds2hms(elapsed)
-  const color = useColorModeValue('brandPurple.700', 'brandPurple.200')
-  const numberStyles: TextProps = {
-    fontSize: '7xl',
-    fontWeight: 'bold',
-    color,
-    lineHeight: '0.7',
-    fontFamily: 'mono',
-  }
-
-  const textStyles: TextProps = {
-    fontSize: 'xs',
-    fontWeight: 'bold',
-    lineHeight: '0.7',
-  }
 
   return (
-    <HStack align='start' spacing={5} {...rest}>
-      <VStack>
-        <Text {...numberStyles}>{zeroPad(hours)}</Text>
-        <Text {...textStyles}>hours</Text>
-      </VStack>
-      {/* <Text fontSize="7xl" lineHeight="0.7" >:</Text> */}
-      <VStack>
-        <Text {...numberStyles}>{zeroPad(minutes)}</Text>
-        <Text {...textStyles}>minutes</Text>
-      </VStack>
-      {/* <Text fontSize="7xl" lineHeight="0.7" >:</Text> */}
-      <VStack>
-        <Text {...numberStyles}>{zeroPad(seconds)}</Text>
-        <Text {...textStyles}>seconds</Text>
-      </VStack>
-    </HStack>
+    <div className='flex space-x-5 w-full justify-center'>
+      <div className='flex flex-col'>
+        <p className='md:text-6xl text-4xl text-primary font-mono font-bold'>
+          {zeroPad(hours)}
+        </p>
+        <p className='text-xs text-default-500'>hours</p>
+      </div>
+      <div className='flex flex-col'>
+        <p className='md:text-6xl text-4xl text-primary font-mono font-bold'>
+          {zeroPad(minutes)}
+        </p>
+        <p className='text-xs text-default-500'>minutes</p>
+      </div>
+      <div className='flex flex-col'>
+        <p className='md:text-6xl text-4xl text-primary font-mono font-bold'>
+          {zeroPad(seconds)}
+        </p>
+        <p className='text-xs text-default-500'>seconds</p>
+      </div>
+    </div>
   )
 }
 
