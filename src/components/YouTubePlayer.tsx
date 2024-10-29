@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react'
 import YouTube, { YouTubeProps, YouTubePlayer as Player } from 'react-youtube'
 import { Card, CardBody, Image, Button, Slider } from '@nextui-org/react'
 import { PlayIcon, XMarkIcon, PauseIcon } from '@heroicons/react/24/solid'
-import { seconds2hms, zeroPad } from '../utils/time'
+import { hms } from '../utils/time'
 import Context from '../context'
 
 export type YouTubePlayerProps = {
@@ -87,10 +87,8 @@ const YouTubePlayer: React.FC = () => {
                   <div className='flex flex-col gap-1'>
                     <p>{video.title}</p>
                     <p className='text-tiny text-default-500'>
-                      {zeroPad(seconds2hms(elapsed)[1])}:
-                      {zeroPad(seconds2hms(elapsed)[2])}/
-                      {zeroPad(seconds2hms(duration)[1])}:
-                      {zeroPad(seconds2hms(duration)[2])}
+                      {hms(elapsed, duration < 3600)}/
+                      {hms(duration, duration < 3600)}
                     </p>
                   </div>
                 </div>
@@ -130,6 +128,11 @@ const YouTubePlayer: React.FC = () => {
                 minValue={0}
                 maxValue={duration}
                 value={elapsed}
+                onChange={(value) => {
+                  if (playerRef.current) {
+                    playerRef.current.seekTo(value as number, true)
+                  }
+                }}
                 size='sm'
               />
             </CardBody>

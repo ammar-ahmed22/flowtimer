@@ -29,7 +29,6 @@ const Body: React.FC<BodyProps> = ({ onClose }) => {
   const handleSubmitQuery = async () => {
     if (query === '') return
     try {
-      console.log(baseParams)
       const url = createRequestURL(baseURL, {
         ...baseParams,
         maxResults: 6,
@@ -37,7 +36,11 @@ const Body: React.FC<BodyProps> = ({ onClose }) => {
       })
       const response = await axios.get(url)
       setNextPage({ nextToken: response.data.nextPageToken, query })
-      setVideos(response.data.items)
+      setVideos(
+        response.data.items.filter(
+          (item: any) => item.snippet.liveBroadcastContent !== 'live',
+        ),
+      )
     } catch (err) {
       console.error('Error fetching videos', err)
     }

@@ -4,15 +4,33 @@ import Context from '../../context'
 import TimeDisplay from '../TimeDisplay'
 import Controls from './Controls'
 import { BellSnoozeIcon } from '@heroicons/react/24/solid'
+import { Autocomplete, AutocompleteItem } from '@nextui-org/react'
 
 const WorkDisplay: React.FC = () => {
-  const { toggleMode, minBreakTime, setTimeWorked, timer } = useContext(Context)
+  const { toggleMode, minBreakTime, setTimeWorked, timer, tasks } =
+    useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
   const hms = seconds2hms(breakTime)
 
   return (
     <div className='h-full flex flex-col text-center justify-center align-center space-y-5'>
+      <div className='w-full flex justify-center'>
+        <Autocomplete
+          label='Select a task to focus on'
+          className='max-w-xs'
+          variant='bordered'
+          labelPlacement='outside'
+        >
+          {tasks.map((task) => {
+            return (
+              <AutocompleteItem key={task.id} value={task.id}>
+                {task.desc}
+              </AutocompleteItem>
+            )
+          })}
+        </Autocomplete>
+      </div>
       <p className='text-foreground'>You have been working for</p>
       <TimeDisplay elapsed={elapsed} />
       <p className='text-foreground'>

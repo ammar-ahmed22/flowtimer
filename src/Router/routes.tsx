@@ -1,14 +1,14 @@
 import type { RouteObject } from 'react-router-dom'
 import App from '../Pages/App'
-import Info from '../components/Info'
+import Landing from '../Pages/Landing'
 
 const routes: RouteObject[] = [
   {
     index: true,
     element: (
       <>
-        <App />
-        <Info />
+        {/* <App /> */}
+        <Landing />
       </>
     ),
   },
