@@ -1,18 +1,14 @@
 export type BMCIconProps = {
-  width?: number,
-  height?: number,
-  color?: string,
+  width?: number
+  height?: number
+  color?: string
 }
 
-export default function BMCIcon({ 
-  width,
-  height,
-  color
-} : BMCIconProps) {
-  const aspectRatio = 884 / 1279;
-  let useDefault = false;
+export default function BMCIcon({ width, height, color }: BMCIconProps) {
+  const aspectRatio = 884 / 1279
+  let useDefault = false
   if (!width && !height) {
-    useDefault = true;
+    useDefault = true
   }
   return (
     <svg

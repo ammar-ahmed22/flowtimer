@@ -191,22 +191,21 @@ const Landing: React.FC = () => {
               Ammar
             </a>
           </p>
-          <div className="flex gap-2 justify-center">
-            <Button
-              size="sm"
-              color="primary"
-              as={Link}
-              to="/app"
-            >Get started</Button>
+          <div className='flex gap-2 justify-center'>
+            <Button size='sm' color='primary' as={Link} to='/app'>
+              Get started
+            </Button>
             <Button
               startContent={<BMCIcon height={12} />}
-              as="a"
-              href="https://buymeacoffee.com/ammar.ahmed"
-              target="_blank"
-              size="sm"
-              color="primary"
-              variant="bordered"
-            >Buy me a coffee</Button>
+              as='a'
+              href='https://buymeacoffee.com/ammar.ahmed'
+              target='_blank'
+              size='sm'
+              color='primary'
+              variant='bordered'
+            >
+              Buy me a coffee
+            </Button>
           </div>
           <p className='text-sm text-default-400 text-center font-thin'>
             © Flowtimer 2024. All Rights Reserved.
