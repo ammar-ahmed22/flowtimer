@@ -69,7 +69,7 @@ const Landing: React.FC = () => {
 
   return (
     <div className='max-w-3xl px-4 mx-auto md:text-md text-sm text-default-500 min-h-screen'>
-      <Header hideSettings hideAudio />
+      <Header hideSettings hideAudio hideStats />
       <section className='pb-8 h-[90vh] flex items-center relative'>
         <div>
           <h1 className='md:text-3xl text-xl text-foreground font-extrabold tracking-tight mb-2'>

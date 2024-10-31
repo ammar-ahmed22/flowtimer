@@ -16,10 +16,9 @@ export type Task = {
 }
 
 export type FocusSession = {
-  startedAt: number,
-  timeWorked: number,
+  startedAt: number
+  timeWorked: number
 }
-
 
 export type YouTubeVideo = {
   title: string
@@ -50,7 +49,7 @@ export type ContextType = {
   volume: number
   setVolume: SetState<number>
   video?: YouTubeVideo
-  setVideo: SetState<YouTubeVideo | undefined>,
+  setVideo: SetState<YouTubeVideo | undefined>
   addSession: (startedAt: Date, timeWorked: number) => void
 }
 
@@ -83,7 +82,7 @@ const Context = createContext<ContextType>({
   setVolume: () => {},
   video: undefined,
   setVideo: () => {},
-  addSession: (startedAt: Date, timeWorked: number) => {}
+  addSession: (startedAt: Date, timeWorked: number) => {},
 })
 
 type ContextProviderProps = {
@@ -99,7 +98,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const [minBreakTime, setMinBreakTime] = useState(0.166667)
   const [getLocalTasks, setLocalTasks] =
     useJSONLocalStorage<Task[]>('flowtimer-tasks')
-  const [getLocalSessions, setLocalSessions] = useJSONLocalStorage<FocusSession[]>('flowtimer-sessions');
+  const [getLocalSessions, setLocalSessions] =
+    useJSONLocalStorage<FocusSession[]>('flowtimer-sessions')
   const [tasks, setTasks] = useState<Task[]>(getLocalTasks() ?? [])
   const [tickSound, setTickSound] = useState(false)
   const [alarmSound, setAlarmSound] = useState<AlarmName | undefined>(undefined)
@@ -183,7 +183,7 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
     video,
     setVideo,
     addSession(startedAt, timeWorked) {
-      const sessions = getLocalSessions();
+      const sessions = getLocalSessions()
       const session = { startedAt: startedAt.getTime(), timeWorked }
       if (!sessions) {
         setLocalSessions([session])

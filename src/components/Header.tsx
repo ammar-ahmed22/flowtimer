@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Button } from '@nextui-org/react'
-import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
+import { MoonIcon, SunIcon, ChartBarIcon } from '@heroicons/react/24/solid'
 import { useThemeValue } from '../hooks/theme'
 import { ThemeContext } from '../context/theme'
 import AudioSearch from './AudioSearch'
@@ -10,9 +10,14 @@ import { Link } from 'react-router-dom'
 export type HeaderProps = {
   hideSettings?: boolean
   hideAudio?: boolean
+  hideStats?: boolean
 }
 
-const Header: React.FC<HeaderProps> = ({ hideSettings, hideAudio }) => {
+const Header: React.FC<HeaderProps> = ({
+  hideSettings,
+  hideAudio,
+  hideStats,
+}) => {
   const { setTheme } = useContext(ThemeContext)
   const ThemeIcon = useThemeValue(MoonIcon, SunIcon)
   return (
@@ -36,6 +41,19 @@ const Header: React.FC<HeaderProps> = ({ hideSettings, hideAudio }) => {
         >
           <ThemeIcon className='size-5' />
         </Button>
+        {!hideStats && (
+          <Button
+            size='sm'
+            color='primary'
+            variant='bordered'
+            isIconOnly
+            className='border-none'
+            as={Link}
+            to='/stats'
+          >
+            <ChartBarIcon className='size-5' />
+          </Button>
+        )}
         {!hideSettings && <Settings />}
         {!hideAudio && <AudioSearch />}
       </div>

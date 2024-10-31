@@ -7,7 +7,7 @@ import { BellSnoozeIcon } from '@heroicons/react/24/solid'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/react'
 
 const WorkDisplay: React.FC = () => {
-  const [startedAt, setStartedAt] = useState<Date | undefined>(undefined);
+  const [startedAt, setStartedAt] = useState<Date | undefined>(undefined)
   const { toggleMode, minBreakTime, setTimeWorked, timer, tasks, addSession } =
     useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
@@ -16,7 +16,7 @@ const WorkDisplay: React.FC = () => {
 
   useEffect(() => {
     if (isStarted && elapsed === 0) {
-      setStartedAt(new Date());
+      setStartedAt(new Date())
     }
   }, [elapsed, isStarted])
 
