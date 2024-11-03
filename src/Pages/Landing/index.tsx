@@ -11,7 +11,6 @@ import {
   ClipboardDocumentCheckIcon,
   MusicalNoteIcon,
 } from '@heroicons/react/24/outline'
-import BMCIcon from '../../components/BMCIcon'
 import { useThemeValue } from '../../hooks/theme'
 import heroDark from '../../assets/images/hero_dark.png'
 import heroLight from '../../assets/images/hero_light.png'

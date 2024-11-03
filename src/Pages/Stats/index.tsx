@@ -4,7 +4,7 @@ import Footer from '../../components/Footer'
 import { useJSONLocalStorage } from '../../hooks/storage'
 import type { FocusSession } from '../../context'
 import FocusChart from './FocusChart'
-import { Select, SelectItem } from '@nextui-org/react'
+import { Select, SelectItem, Button } from '@nextui-org/react'
 import KPICard from './KPICard'
 import HeatMap from './HeatMap'
 import { getKPIs, getKPIChange } from '../../utils/stats'
@@ -15,6 +15,8 @@ import {
   toLocaleDateString,
 } from '../../utils/time'
 import { CalendarDateTime } from '@internationalized/date'
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom'
 
 const RANGE_FILTERS = ['daily', 'weekly', 'monthly'] as const
 
@@ -123,6 +125,15 @@ export default function Stats() {
       <Header />
       <div className='grid grid-cols-4 gap-2 mb-2'>
         <div className='flex flex-col gap-2 h-full'>
+          <Button
+            startContent={<ArrowLeftIcon className='size-4' />}
+            color='default'
+            variant='flat'
+            as={Link}
+            to='/app'
+          >
+            Back
+          </Button>
           <Select
             selectedKeys={[filter]}
             onChange={(e) => {
