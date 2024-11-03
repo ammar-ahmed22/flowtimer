@@ -4,7 +4,7 @@ import {
   now,
   getLocalTimeZone,
   CalendarDateTime,
-  parseDateTime
+  parseDateTime,
 } from '@internationalized/date'
 
 /**
@@ -21,14 +21,14 @@ export const seconds2hms = (seconds: number): [number, number, number] => {
 
 /**
  * Pads a value with zero if it's less than 10
- * @param value 
- * @returns 
+ * @param value
+ * @returns
  */
 export const zeroPad = (value: number): string =>
   `${value <= 9 ? '0' : ''}${value}`
 
 /**
- * Generates an hms string 
+ * Generates an hms string
  * @param seconds seconds value
  * @param removeHour If true, removes the hour value: mm:ss
  * @returns string of the form hh:mm:ss
@@ -55,7 +55,7 @@ export const twelveHour = (hour: number) => {
 
 /**
  * Creates a CalendarDateTime at the exact time it is called
- * @returns 
+ * @returns
  */
 export const todayNow = () => {
   return toCalendarDateTime(today(getLocalTimeZone()), now(getLocalTimeZone()))
@@ -64,7 +64,7 @@ export const todayNow = () => {
 /**
  * Converts a CalendarDateTime to the start of the day (12:00 AM)
  * @param date CalendarDateTime
- * @returns 
+ * @returns
  */
 export const startOfDay = (date: CalendarDateTime): CalendarDateTime => {
   return new CalendarDateTime(date.year, date.month, date.day, 0, 0, 0)
@@ -73,7 +73,7 @@ export const startOfDay = (date: CalendarDateTime): CalendarDateTime => {
 /**
  * Converts a CalendarDateTime to the end of the day (11:59 PM)
  * @param date CalendarDateTime
- * @returns 
+ * @returns
  */
 export const endOfDay = (date: CalendarDateTime): CalendarDateTime => {
   return new CalendarDateTime(date.year, date.month, date.day, 23, 59, 59)
@@ -82,9 +82,9 @@ export const endOfDay = (date: CalendarDateTime): CalendarDateTime => {
 /**
  * Converts a CalendarDateTime to LocaleDateString as per built-in JavaScript functionality
  * @param date CalendarDateTime
- * @param locales 
- * @param options 
- * @returns 
+ * @param locales
+ * @param options
+ * @returns
  */
 export const toLocaleDateString = (
   date: CalendarDateTime,
@@ -114,8 +114,8 @@ export function isInRange(
 
 /**
  * Converts an epoch timestamp in milliseconds to CalendarDateTime
- * @param epoch 
- * @returns 
+ * @param epoch
+ * @returns
  */
 export function epoch2datetime(epoch: number): CalendarDateTime {
   return parseDateTime(new Date(epoch).toISOString().slice(0, -1))
@@ -123,9 +123,9 @@ export function epoch2datetime(epoch: number): CalendarDateTime {
 
 /**
  * Converts a CalendarDateTime to epoch timestamp in milliseconds
- * @param date 
- * @returns 
+ * @param date
+ * @returns
  */
 export function datetime2epoch(date: CalendarDateTime): number {
-  return date.toDate(getLocalTimeZone()).getTime();
+  return date.toDate(getLocalTimeZone()).getTime()
 }

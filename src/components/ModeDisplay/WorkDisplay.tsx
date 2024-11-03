@@ -26,7 +26,7 @@ const WorkDisplay: React.FC = () => {
         addSession(startedAt, elapsed)
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

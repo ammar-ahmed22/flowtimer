@@ -42,43 +42,57 @@ export default function Stats() {
   })
   const [filter, setFilter] = useState<RangeFilter>('daily')
   const [date, setDate] = useState(todayNow())
-  const filterMap: RangeFilterMap = useMemo(() => ({
-    daily: {
-      current: 'today',
-      compare: 'yesterday',
-      range: [startOfDay(date), endOfDay(date)],
-      compareRange: [
-        startOfDay(date.subtract({ days: 1 })),
-        endOfDay(date.subtract({ days: 1 })),
-      ],
-    },
-    weekly: {
-      current: 'this week',
-      compare: 'last week',
-      range: [startOfDay(date), endOfDay(date.add({ weeks: 1 }))],
-      compareRange: [startOfDay(date.subtract({ weeks: 1 })), startOfDay(date)],
-    },
-    monthly: {
-      current: 'this month',
-      compare: 'last month',
-      range: [startOfDay(date), endOfDay(date.add({ months: 1 }))],
-      compareRange: [
-        startOfDay(date.subtract({ months: 1 })),
-        startOfDay(date),
-      ],
-    },
-  }), [date])
+  const filterMap: RangeFilterMap = useMemo(
+    () => ({
+      daily: {
+        current: 'today',
+        compare: 'yesterday',
+        range: [startOfDay(date), endOfDay(date)],
+        compareRange: [
+          startOfDay(date.subtract({ days: 1 })),
+          endOfDay(date.subtract({ days: 1 })),
+        ],
+      },
+      weekly: {
+        current: 'this week',
+        compare: 'last week',
+        range: [startOfDay(date), endOfDay(date.add({ weeks: 1 }))],
+        compareRange: [
+          startOfDay(date.subtract({ weeks: 1 })),
+          startOfDay(date),
+        ],
+      },
+      monthly: {
+        current: 'this month',
+        compare: 'last month',
+        range: [startOfDay(date), endOfDay(date.add({ months: 1 }))],
+        compareRange: [
+          startOfDay(date.subtract({ months: 1 })),
+          startOfDay(date),
+        ],
+      },
+    }),
+    [date],
+  )
 
-  const { average, total, max } = useMemo(() => getKPIs(sessions, filterMap[filter].range, {
-    minutes: true,
-    precision: 1,
-  }), [sessions, filter, filterMap])
-  const kpiChange = useMemo(() => getKPIChange(
-    sessions,
-    filterMap[filter].range,
-    filterMap[filter].compareRange,
-    { minutes: true, precision: 1 },
-  ), [sessions, filter, filterMap])
+  const { average, total, max } = useMemo(
+    () =>
+      getKPIs(sessions, filterMap[filter].range, {
+        minutes: true,
+        precision: 1,
+      }),
+    [sessions, filter, filterMap],
+  )
+  const kpiChange = useMemo(
+    () =>
+      getKPIChange(
+        sessions,
+        filterMap[filter].range,
+        filterMap[filter].compareRange,
+        { minutes: true, precision: 1 },
+      ),
+    [sessions, filter, filterMap],
+  )
 
   const kpis = [
     {
