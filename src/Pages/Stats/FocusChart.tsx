@@ -1,14 +1,14 @@
 import React from 'react'
 import {
   ResponsiveContainer,
-  BarChart,
   CartesianGrid,
   XAxis,
   YAxis,
   Label,
-  Bar,
   Tooltip,
   TooltipProps,
+  AreaChart,
+  Area,
 } from 'recharts'
 import type { FocusSession } from '../../context'
 import colors from 'tailwindcss/colors'
@@ -116,7 +116,7 @@ export default function FocusChart({
       </CardHeader>
       <CardBody>
         <ResponsiveContainer height={300} className='text-primary/90'>
-          <BarChart
+          <AreaChart
             data={getFocusByHour(sessions, date, {
               minutes: true,
               precision: 1,
@@ -155,9 +155,28 @@ export default function FocusChart({
                 fill: 'rgba(0, 0, 0, 0)',
               }}
             />
-
-            <Bar dataKey='Focus Time' fill='currentColor' />
-          </BarChart>
+            <defs>
+              <linearGradient id='colorUv' x1='0' y1='0' x2='0' y2='1'>
+                <stop
+                  offset='5%'
+                  stopColor='hsl(var(--flowtimer-primary))'
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset='95%'
+                  stopColor='hsl(var(--flowtimer-primary))'
+                  stopOpacity={0.2}
+                />
+              </linearGradient>
+            </defs>
+            <Area
+              dataKey='Focus Time'
+              type='bump'
+              stroke='currentColor'
+              fill='url(#colorUv)'
+              fillOpacity={1}
+            />
+          </AreaChart>
         </ResponsiveContainer>
       </CardBody>
     </Card>
