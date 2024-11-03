@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react'
+import React, { useMemo, useContext, useEffect, useState } from 'react'
 import { seconds2hms, zeroPad } from '../../utils/time'
 import Context from '../../context'
 import TimeDisplay from '../TimeDisplay'
@@ -7,11 +7,27 @@ import { BellSnoozeIcon } from '@heroicons/react/24/solid'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/react'
 
 const WorkDisplay: React.FC = () => {
-  const { toggleMode, minBreakTime, setTimeWorked, timer, tasks } =
+  const [startedAt, setStartedAt] = useState<Date | undefined>(undefined)
+  const { toggleMode, minBreakTime, setTimeWorked, timer, tasks, addSession } =
     useContext(Context)
   const { elapsed, isStarted, toggleStart, reset } = timer
   const breakTime = useMemo(() => Math.floor(elapsed / 5), [elapsed])
   const hms = seconds2hms(breakTime)
+
+  useEffect(() => {
+    if (isStarted && elapsed === 0) {
+      setStartedAt(new Date())
+    }
+  }, [elapsed, isStarted])
+
+  useEffect(() => {
+    return () => {
+      if (startedAt) {
+        addSession(startedAt, elapsed)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className='h-full flex flex-col text-center justify-center align-center space-y-5'>
@@ -45,12 +61,21 @@ const WorkDisplay: React.FC = () => {
         onSwitchMode={() => {
           if (isStarted) toggleStart()
           setTimeWorked(elapsed)
+          // save the metric
+          if (startedAt) {
+            addSession(startedAt, elapsed)
+          }
           reset(() => (document.title = 'Flowtimer'))
           toggleMode()
         }}
         switchIcon={<BellSnoozeIcon className='size-5' />}
         switchDisabled={breakTime < minBreakTime * 60}
-        onReset={() => reset(() => (document.title = 'Work - 00:00'))}
+        onReset={() => {
+          if (startedAt) {
+            addSession(startedAt, elapsed)
+          }
+          reset(() => (document.title = 'Work - 00:00'))
+        }}
       />
     </div>
   )

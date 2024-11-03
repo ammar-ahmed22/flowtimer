@@ -13,7 +13,7 @@ const workerFunction = function () {
       IID = setInterval(() => {
         elapsed++
         postMessage(elapsed)
-      }, 1000)
+      }, 100)
     } else if (data.control === 'stop') {
       clearInterval(IID)
     } else if (data.control === 'reset') {

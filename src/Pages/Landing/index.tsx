@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import { textGradient } from '../../utils/classes'
 import { Button, Image, Divider } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
@@ -9,8 +10,8 @@ import {
   BellSnoozeIcon,
   ClipboardDocumentCheckIcon,
   MusicalNoteIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline'
-import BMCIcon from '../../components/BMCIcon'
 import { useThemeValue } from '../../hooks/theme'
 import heroDark from '../../assets/images/hero_dark.png'
 import heroLight from '../../assets/images/hero_light.png'
@@ -22,6 +23,8 @@ import taskDark from '../../assets/images/task_dark.png'
 import taskLight from '../../assets/images/task_light.png'
 import musicDark from '../../assets/images/music_dark.png'
 import musicLight from '../../assets/images/music_light.png'
+import statsDark from '../../assets/images/stats_dark.png'
+import statsLight from '../../assets/images/stats_light.png'
 
 const Landing: React.FC = () => {
   const grad = textGradient(
@@ -35,6 +38,7 @@ const Landing: React.FC = () => {
   const workImage = useThemeValue(workLight, workDark)
   const breakImage = useThemeValue(breakLight, breakDark)
   const taskImage = useThemeValue(taskLight, taskDark)
+  const statsImage = useThemeValue(statsLight, statsDark)
   const musicImage = useThemeValue(musicLight, musicDark)
   const features = [
     {
@@ -59,6 +63,13 @@ const Landing: React.FC = () => {
       image: taskImage,
     },
     {
+      heading: 'Analyze your stats',
+      description:
+        "Track key metrics about your time spent focusing to see how you're improving!",
+      icon: ChartBarIcon,
+      image: statsImage,
+    },
+    {
       heading: 'Play music',
       description:
         'Search for and play music from YouTube directly in the app to maintain your focus and keep the momentum going while you work.',
@@ -69,7 +80,7 @@ const Landing: React.FC = () => {
 
   return (
     <div className='max-w-3xl px-4 mx-auto md:text-md text-sm text-default-500 min-h-screen'>
-      <Header hideSettings hideAudio />
+      <Header hideSettings hideAudio hideStats />
       <section className='pb-8 h-[90vh] flex items-center relative'>
         <div>
           <h1 className='md:text-3xl text-xl text-foreground font-extrabold tracking-tight mb-2'>
@@ -157,9 +168,9 @@ const Landing: React.FC = () => {
                   className={`flex min-h-[50vh] gap-4 justify-center flex-col items-center ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className='p-2'>
-                    <div className='flex gap-2 pb-2'>
-                      <div className='dark:bg-primary-800/50 bg-primary-400/50 p-1 rounded-full'>
-                        <Icon className='size-6 text-primary' />
+                    <div className='flex gap-2 pb-2 items-center'>
+                      <div className='dark:bg-primary-800/50 size-8 bg-primary-400/50 p-1 rounded-full flex justify-center items-center'>
+                        <Icon className='size-5 text-primary' />
                       </div>
                       <h2 className='font-extrabold text-lg text-foreground tracking-tight whitespace-nowrap'>
                         {feature.heading}
@@ -180,37 +191,7 @@ const Landing: React.FC = () => {
             })}
           </div>
         </section>
-        <footer className='relative flex flex-col justify-center items-center py-12 gap-4'>
-          <div className='absolute w-screen h-[1px] bg-primary-300/50 top-0 left-1/2 translate-x-[-50%]'></div>
-          <p className='text-center'>
-            Made with 🧠 by{' '}
-            <a
-              href='https://ammarahmed.ca'
-              className='hover:underline text-primary'
-            >
-              Ammar
-            </a>
-          </p>
-          <div className='flex gap-2 justify-center'>
-            <Button size='sm' color='primary' as={Link} to='/app'>
-              Get started
-            </Button>
-            <Button
-              startContent={<BMCIcon height={12} />}
-              as='a'
-              href='https://buymeacoffee.com/ammar.ahmed'
-              target='_blank'
-              size='sm'
-              color='primary'
-              variant='bordered'
-            >
-              Buy me a coffee
-            </Button>
-          </div>
-          <p className='text-sm text-default-400 text-center font-thin'>
-            © Flowtimer 2024. All Rights Reserved.
-          </p>
-        </footer>
+        <Footer />
       </div>
     </div>
   )
