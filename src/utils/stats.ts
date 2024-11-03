@@ -215,7 +215,7 @@ export function dailyFocusTimeBounds(
 export function fakeSessionData(
   start: CalendarDateTime,
   end: CalendarDateTime,
-  maxSessions: number,
+  maxSessionsRange: [number, number],
 ): FocusSession[] {
   if (start.compare(end) > 0) {
     throw new RangeError('start date must be less than or equal to end date!')
@@ -229,7 +229,7 @@ export function fakeSessionData(
     currentDate <= datetime2epoch(end);
     currentDate += oneDay
   ) {
-    const numSessions = randint(0, maxSessions) // Random number of sessions (0 to maxSessions)
+    const numSessions = randint(maxSessionsRange[0], maxSessionsRange[1]) // Random number of sessions (0 to maxSessions)
     let lastEndTime = 0 // Track the end time of the last session to prevent overlaps
 
     for (let i = 0; i < numSessions; i++) {
