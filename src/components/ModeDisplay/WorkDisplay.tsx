@@ -20,6 +20,15 @@ const WorkDisplay: React.FC = () => {
     }
   }, [elapsed, isStarted])
 
+  useEffect(() => {
+    return () => {
+      if (startedAt) {
+        addSession(startedAt, elapsed)
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className='h-full flex flex-col text-center justify-center align-center space-y-5'>
       <div className='w-full flex justify-center'>

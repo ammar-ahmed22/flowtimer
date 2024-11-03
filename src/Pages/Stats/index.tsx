@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import { useJSONLocalStorage } from '../../hooks/storage'
 import type { FocusSession } from '../../context'
 import FocusChart from './FocusChart'
 import { Select, SelectItem } from '@nextui-org/react'
 import KPICard from './KPICard'
+import HeatMap from './HeatMap'
 import { getKPIs, getKPIChange } from '../../utils/stats'
 import {
   todayNow,
@@ -40,7 +42,7 @@ export default function Stats() {
   })
   const [filter, setFilter] = useState<RangeFilter>('daily')
   const [date, setDate] = useState(todayNow())
-  const filterMap: RangeFilterMap = {
+  const filterMap: RangeFilterMap = useMemo(() => ({
     daily: {
       current: 'today',
       compare: 'yesterday',
@@ -65,18 +67,18 @@ export default function Stats() {
         startOfDay(date),
       ],
     },
-  }
+  }), [date])
 
-  const { average, total, max } = getKPIs(sessions, filterMap[filter].range, {
+  const { average, total, max } = useMemo(() => getKPIs(sessions, filterMap[filter].range, {
     minutes: true,
     precision: 1,
-  })
-  const kpiChange = getKPIChange(
+  }), [sessions, filter, filterMap])
+  const kpiChange = useMemo(() => getKPIChange(
     sessions,
     filterMap[filter].range,
     filterMap[filter].compareRange,
     { minutes: true, precision: 1 },
-  )
+  ), [sessions, filter, filterMap])
 
   const kpis = [
     {
@@ -105,7 +107,7 @@ export default function Stats() {
   return (
     <div className='max-w-3xl md:px-0 px-5 min-h-screen relative mx-auto'>
       <Header />
-      <div className='grid grid-cols-4 gap-2'>
+      <div className='grid grid-cols-4 gap-2 mb-2'>
         <div className='flex flex-col gap-2 h-full'>
           <Select
             selectedKeys={[filter]}
@@ -170,6 +172,8 @@ export default function Stats() {
           setDate={setDate}
         />
       </div>
+      <HeatMap sessions={sessions} />
+      <Footer />
     </div>
   )
 }

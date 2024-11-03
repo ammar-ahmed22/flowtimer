@@ -118,7 +118,7 @@ export default function FocusChart({
         <ResponsiveContainer height={300} className='text-primary/90'>
           <BarChart
             data={getFocusByHour(sessions, date, {
-              toMinutes: true,
+              minutes: true,
               precision: 1,
             })}
             margin={{ top: 20, right: 30, bottom: 20 }}
