@@ -10,6 +10,7 @@ import {
   BellSnoozeIcon,
   ClipboardDocumentCheckIcon,
   MusicalNoteIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/outline'
 import { useThemeValue } from '../../hooks/theme'
 import heroDark from '../../assets/images/hero_dark.png'
@@ -22,6 +23,8 @@ import taskDark from '../../assets/images/task_dark.png'
 import taskLight from '../../assets/images/task_light.png'
 import musicDark from '../../assets/images/music_dark.png'
 import musicLight from '../../assets/images/music_light.png'
+import statsDark from '../../assets/images/stats_dark.png'
+import statsLight from '../../assets/images/stats_light.png'
 
 const Landing: React.FC = () => {
   const grad = textGradient(
@@ -35,6 +38,7 @@ const Landing: React.FC = () => {
   const workImage = useThemeValue(workLight, workDark)
   const breakImage = useThemeValue(breakLight, breakDark)
   const taskImage = useThemeValue(taskLight, taskDark)
+  const statsImage = useThemeValue(statsLight, statsDark)
   const musicImage = useThemeValue(musicLight, musicDark)
   const features = [
     {
@@ -57,6 +61,13 @@ const Landing: React.FC = () => {
         'Manage your tasks with ease, checking off items as you go to stay on track and achieve your goals.',
       icon: ClipboardDocumentCheckIcon,
       image: taskImage,
+    },
+    {
+      heading: 'Analyze your stats',
+      description:
+        "Track key metrics about your time spent focusing to see how you're improving!",
+      icon: ChartBarIcon,
+      image: statsImage,
     },
     {
       heading: 'Play music',
@@ -157,9 +168,9 @@ const Landing: React.FC = () => {
                   className={`flex min-h-[50vh] gap-4 justify-center flex-col items-center ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className='p-2'>
-                    <div className='flex gap-2 pb-2'>
-                      <div className='dark:bg-primary-800/50 bg-primary-400/50 p-1 rounded-full'>
-                        <Icon className='size-6 text-primary' />
+                    <div className='flex gap-2 pb-2 items-center'>
+                      <div className='dark:bg-primary-800/50 size-8 bg-primary-400/50 p-1 rounded-full flex justify-center items-center'>
+                        <Icon className='size-5 text-primary' />
                       </div>
                       <h2 className='font-extrabold text-lg text-foreground tracking-tight whitespace-nowrap'>
                         {feature.heading}
