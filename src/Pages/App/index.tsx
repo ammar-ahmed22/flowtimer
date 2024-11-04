@@ -8,7 +8,9 @@ const App: React.FC = () => {
   return (
     <ContextProvider>
       <div className='max-w-3xl md:px-0 px-5 min-h-screen relative mx-auto'>
-        <Header />
+        <Header
+          hideStats // TODO temporarily hide because of bug #9
+        />
         <Main />
         <YouTubePlayer />
       </div>
